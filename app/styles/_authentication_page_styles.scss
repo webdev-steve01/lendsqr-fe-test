@@ -1,0 +1,75 @@
+// This file contains styles for the authentication page of the application.
+.auth {
+  // display: flex;
+  // padding: 0 4em;
+  height: 100vh;
+
+  // border: 1px solid red;
+  .auth-image-section {
+    // border: 1px solid red;
+    display: none;
+    gap: 5em;
+    // width: 90%;
+
+    .auth-image-children {
+      display: flex;
+      flex-direction: column;
+      gap: 4em;
+      .logo {
+        padding: 0 2em;
+      }
+    }
+  }
+  .auth-container {
+    // border: 1px solid red;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    height: 90vh;
+    padding: 0 2em;
+    justify-content: center;
+    max-width: 600px;
+    margin: auto;
+    .auth-header-container {
+      margin-bottom: 3em;
+
+      .form-logo {
+        margin-bottom: 100px;
+      }
+    }
+    .auth-header {
+      color: $main-blue;
+      font-weight: 700;
+      font-size: 40px;
+    }
+    .auth-subtext {
+      color: $text-color;
+      font-size: 20px;
+      font-weight: 400;
+      margin-top: 10px;
+    }
+    .auth-footer-text {
+      color: $green;
+      font-size: 12px;
+      font-weight: 400;
+      text-transform: uppercase;
+      // margin-top: 10px;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+    }
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      .form-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+      }
+    }
+  }
+}

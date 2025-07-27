@@ -1,0 +1,39 @@
+@import "../../../app/styles/variables";
+.searchBar {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  // border: 1px solid black;
+  border-radius: 4px;
+  width: 100%;
+  border-radius: 8px;
+  border: 1px solid $input-border-color;
+  overflow: hidden;
+  // box-sizing: border-box;
+
+  .searchBarInputField {
+    flex: 1; // 👈 This makes it expand to take up remaining space
+    height: 100%;
+    border: none;
+    outline: none;
+    font-size: 1rem;
+    width: 100%;
+    padding: 0 10px;
+    // background-color: re;
+
+    &:focus-within {
+      outline: none;
+    }
+  }
+
+  .searchBarButton {
+    background: $green;
+    border: none;
+    cursor: pointer;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+}

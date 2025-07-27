@@ -1,0 +1,44 @@
+@import "../../app/styles/variables";
+
+.inputField {
+  display: flex;
+  border: 2px solid $input-border-color;
+  padding: 0 10px;
+  border-radius: 5px;
+
+  .input {
+    width: 100%;
+    color: $text-color;
+    height: 50px;
+    border: none;
+
+    &:focus-within {
+      outline: none;
+    }
+  }
+  .togglePasswordButton {
+    background: none;
+    border: none;
+    color: $green;
+    cursor: pointer;
+    padding: 0 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+
+    &:focus {
+      outline: none;
+    }
+
+    p {
+      margin: 0;
+      font-size: 14px;
+      font-weight: bold;
+      background-color: none;
+    }
+  }
+}
+
+.error {
+  border: 2px solid red;
+}

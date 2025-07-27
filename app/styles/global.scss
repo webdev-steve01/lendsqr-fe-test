@@ -1,0 +1,44 @@
+// utility styles used
+@import "./variables";
+@import "./mixins";
+
+// global styles
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+@font-face {
+  font-family: "MyFont";
+  src: url("../../public/fonts/myFont/Avenir\ Next\ LT\ Pro\ Regular.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MyFont";
+  src: url("../../public/fonts/myFont/Avenir\ Next\ LT\ Pro\ Bold.otf")
+    format("opentype");
+  font-weight: 700;
+  font-style: normal;
+}
+@font-face {
+  font-family: "MyFont";
+  src: url("../../public/fonts/myFont/Avenir\ Next\ LT\ Pro\ Bold.otf")
+    format("opentype");
+  font-weight: 600;
+  font-style: normal;
+}
+body {
+  font-size: 14px;
+  font-family: "MyFont", sans-serif;
+}
+
+//page specific styles
+@import "./authentication_page_styles";
+@import "./dashboard_styles";
+
+// media queries
+@import "./media-queries";

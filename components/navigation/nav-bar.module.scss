@@ -1,0 +1,10 @@
+.navbar {
+  display: flex;
+  gap: 1em;
+  padding: 1.5em 1em;
+  align-items: center;
+
+  .profile {
+    border-radius: 999px;
+  }
+}

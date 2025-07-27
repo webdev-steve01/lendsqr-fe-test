@@ -1,0 +1,46 @@
+.userCard {
+  // border: 1px solid black;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  padding: 1em;
+  border-radius: 8px;
+  background-color: white;
+  position: relative;
+  z-index: 100;
+  .userCardModal {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+    border: 1px solid #545f7d0a;
+    width: 180px;
+    position: absolute;
+    right: 0;
+    background-color: white;
+    padding: 0.5em;
+    z-index: 1000;
+    display: none;
+    .modalItem {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1em;
+      cursor: pointer;
+    }
+  }
+  .moreOptions {
+    align-self: end;
+    justify-self: end;
+    text-transform: capitalize;
+    // border: 1px solid black;
+  }
+  .userCardItem {
+    display: flex;
+    // justify-content: space-between;
+    flex-direction: column;
+    gap: 0.5em;
+    .cardTitle {
+      font-weight: 600;
+    }
+  }
+}

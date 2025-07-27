@@ -1,0 +1,32 @@
+.dashboard-main-container {
+  background-color: #fbfbfb;
+}
+.dashboard-card-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1rem;
+  padding: 1.5rem;
+
+  @media screen and (min-width: 768px) {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.user-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  border: 1px solid black;
+  padding: 1em;
+  color: $text-color;
+  // text-transform: uppercase;
+  width: 100%; // ✅ Let it stretch fully inside the grid cell
+  max-width: none; // ✅ Remove hard width cap
+  height: 100%; // (Optional) Make all cards same height if needed
+
+  .userCardAmount {
+    font-weight: 600;
+    color: $main-blue;
+    font-size: 24px;
+  }
+}

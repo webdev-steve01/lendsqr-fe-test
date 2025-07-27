@@ -1,0 +1,19 @@
+@import "../../../app/styles/variables";
+.cardContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  // border: 1px solid black;
+  background-color: #ffffff;
+  padding: 1em;
+  color: $text-color;
+  text-transform: uppercase;
+  width: 100%; // ✅ Let it stretch fully inside the grid cell
+  max-width: none; // ✅ Remove hard width cap
+  height: 100%; // (Optional) Make all cards same height if needed
+  .cardAmount {
+    font-weight: 600;
+    color: $main-blue;
+    font-size: 24px;
+  }
+}

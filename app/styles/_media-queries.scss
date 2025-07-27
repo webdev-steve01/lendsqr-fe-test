@@ -1,0 +1,19 @@
+@import "./mixins";
+@media screen and (min-width: 1250px) {
+  .auth {
+    display: flex;
+    padding: 0 4em;
+    justify-content: space-between;
+    .auth-image-section {
+      @include flexBox(column, center, center);
+    }
+
+    .auth-container {
+      .auth-header-container {
+        .form-logo {
+          display: none;
+        }
+      }
+    }
+  }
+}
