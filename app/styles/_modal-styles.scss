@@ -1,0 +1,30 @@
+.modal {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 999999;
+  border: 1px solid red;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 8px 0;
+  width: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font-size: 14px;
+  color: #21334f;
+}
+
+.modal-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
+.modal-item:hover {
+  background-color: #f5f7fa;
+}

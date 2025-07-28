@@ -1,8 +1,10 @@
 @import "./variables";
+@import "./modal-styles";
 .dash-body {
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $desktop-width) {
     display: grid;
-    grid-template-columns: 283px 1fr;
+    grid-template-columns: 283px calc(100vw - 238px);
+    // border: 1px solid red;
   }
 }
 .dashboard-main-container {
@@ -12,9 +14,9 @@
     font-weight: 600;
     color: $main-blue;
     margin: 1.5rem 0;
-    padding: 1.5rem;
+    // padding: 1.5rem;
   }
-  @media screen and (min-width: 1200px) {
+  @media screen and (min-width: $desktop-width) {
     padding: 1rem 1.5rem;
   }
 }
@@ -23,6 +25,8 @@
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
   padding: 0 1.5rem;
+  // border: 1px solid red;
+  // width: 100%;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
@@ -33,13 +37,9 @@
   display: flex;
   flex-direction: column;
   gap: 2em;
-  // padding: 1.5rem;
-  // border: 1px solid black;
   padding: 1em;
   color: $text-color;
   width: 100%;
-  max-width: none;
-
   height: 100%;
 
   @media screen and (min-width: 1024px) {
@@ -55,54 +55,48 @@
 
 .table-container {
   width: 100%;
-  border-collapse: collapse;
-  min-width: 100%;
-  display: none;
-  padding: 1.5rem;
+  overflow-x: auto;
+  padding: 1.5rem 0;
+
   .users-table {
-    // border: 1px solid black;
     width: 100%;
     border-collapse: collapse;
-    margin-top: 1rem;
-    table-layout: auto;
+    table-layout: fixed; // 👈 Prevents column overflow
     background-color: white;
   }
 
-  thead {
-    th {
-      text-align: left;
-      padding: 1rem;
-      font-weight: 600;
-      font-size: 0.875rem;
-      color: $text-color;
-      font-weight: 600;
-      white-space: nowrap;
-      p {
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-      }
+  thead th {
+    text-align: left;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    color: $text-color;
+    font-weight: 600;
+    white-space: nowrap;
+
+    p {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
   }
 
   tbody tr {
-    // border-top: 1px solid #eee;
     transition: background 0.3s;
-    width: 100%;
-
-    &:hover {
-      background-color: #fafafa;
-    }
   }
 
   .table-cell {
-    padding: 1rem;
+    padding: 1rem 0;
     font-size: 0.875rem;
-    color: #333;
+    color: $text-color;
     white-space: nowrap;
-    text-overflow: ellipsis;
     overflow: hidden;
-    // width: 100%;
+    text-overflow: ellipsis;
+    padding: 1em 0em;
+    max-width: 200px; // 👈 Controls truncation width
+    // border: 1px solid #ddd; // optional border
+  }
+  .more-options {
+    overflow: visible;
   }
 
   @media screen and (min-width: 1024px) {
@@ -162,7 +156,23 @@
 
 .desktop-pagination {
   justify-content: space-between;
+  padding: 0 1.5rem;
+  display: flex;
   @media screen and (max-width: 1023px) {
     display: none;
   }
+}
+
+table {
+  position: relative;
+  overflow: visible;
+}
+
+tbody {
+  overflow: visible;
+}
+
+td {
+  position: relative;
+  overflow: visible;
 }

@@ -1,3 +1,4 @@
+@import "../../app/styles/variables";
 .navbar {
   display: flex;
   gap: 1em;
@@ -22,7 +23,7 @@
   }
 
   .hamburger {
-    @media screen and (min-width: 1200px) {
+    @media screen and (min-width: $desktop-width) {
       display: none;
     }
   }
@@ -42,7 +43,7 @@
     }
   }
   .desktop {
-    @media screen and (max-width: 1200px) {
+    @media screen and (max-width: $desktop-width) {
       display: none;
     }
   }

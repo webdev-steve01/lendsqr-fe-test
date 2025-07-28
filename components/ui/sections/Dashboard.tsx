@@ -61,7 +61,7 @@ function Dashboard() {
             image={usersWithSavings}
           />
         </div>
-        <div className="user-cards" />
+        {/* <div className="user-cards" /> */}
       </section>
     );
 
@@ -71,7 +71,7 @@ function Dashboard() {
   const render = data.slice(0, 10);
 
   return (
-    <section>
+    <>
       <h1 className="page-title">Users</h1>
       <div className="dashboard-card-container">
         <DashboardCard text="USERS" number={fmt(totalUsers)} image={users} />
@@ -96,7 +96,7 @@ function Dashboard() {
         <UserCards users={data} />
       </div>
       <UserTable data={data} />
-    </section>
+    </>
   );
 }
 

@@ -12,6 +12,7 @@
   max-width: none; // ✅ Remove hard width cap
   height: 100%; // (Optional) Make all cards same height if needed
   height: 160px;
+  border: 1px solid green;
   .cardText {
     font-size: 14px;
   }

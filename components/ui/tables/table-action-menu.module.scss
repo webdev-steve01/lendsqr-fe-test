@@ -1,0 +1,21 @@
+.menu {
+  position: absolute;
+  top: 0;
+  left: -150px;
+  z-index: 99999;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 8px;
+  border-radius: 6px;
+  width: 180px;
+  height: 130px;
+
+  .menuItem {
+    display: flex;
+    align-items: center;
+    // justify-content: space-between;
+    padding: 0.5em;
+    gap: 1em;
+    cursor: pointer;
+  }
+}
