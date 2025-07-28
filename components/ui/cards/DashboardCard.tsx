@@ -15,8 +15,8 @@ function DashboardCard({ text, number, image }: dashboardCardProps) {
         src={image}
         className={`${style.cardImage}`}
         alt={text}
-        width={30}
-        height={30}
+        width={40}
+        height={40}
       />
       <p className={style.cardText}>{text}</p>
       <p className={style.cardAmount}>{number}</p>

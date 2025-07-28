@@ -4,6 +4,11 @@
   padding: 1.5em 1em;
   align-items: center;
 
+  position: sticky;
+  top: 0;
+  z-index: 1000; // ensure it stays above other elements
+  background-color: #fff; // or match your actual background color
+
   .profile {
     border-radius: 999px;
   }
