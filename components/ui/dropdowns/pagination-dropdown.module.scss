@@ -1,0 +1,20 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.95rem;
+  color: #4a4a68;
+}
+
+.select {
+  padding: 6px 36px 6px 12px; // extra right padding for caret
+  border-radius: 6px;
+  border: none;
+  background: #f0f2f8 url("../../../public/SVGs/assets/caret.svg") no-repeat
+    right 12px center;
+  background-size: 12px 12px; // adjust size as needed
+  color: #1a237e;
+  font-weight: 500;
+  appearance: none;
+  cursor: pointer;
+}

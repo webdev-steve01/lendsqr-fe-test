@@ -1,11 +1,28 @@
+@import "./variables";
+.dash-body {
+  @media screen and (min-width: 1200px) {
+    display: grid;
+    grid-template-columns: 283px 1fr;
+  }
+}
 .dashboard-main-container {
   background-color: #fbfbfb;
+  .page-title {
+    font-size: 24px;
+    font-weight: 600;
+    color: $main-blue;
+    margin: 1.5rem 0;
+    padding: 1.5rem;
+  }
+  @media screen and (min-width: 1200px) {
+    padding: 1rem 1.5rem;
+  }
 }
 .dashboard-card-container {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 1.5rem;
+  padding: 0 1.5rem;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
@@ -16,7 +33,7 @@
   display: flex;
   flex-direction: column;
   gap: 2em;
-  padding: 1.5rem;
+  // padding: 1.5rem;
   // border: 1px solid black;
   padding: 1em;
   color: $text-color;
@@ -25,9 +42,127 @@
 
   height: 100%;
 
+  @media screen and (min-width: 1024px) {
+    display: none;
+  }
+
   .userCardAmount {
     font-weight: 600;
     color: $main-blue;
     font-size: 24px;
+  }
+}
+
+.table-container {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 100%;
+  display: none;
+  padding: 1.5rem;
+  .users-table {
+    // border: 1px solid black;
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    table-layout: auto;
+    background-color: white;
+  }
+
+  thead {
+    th {
+      text-align: left;
+      padding: 1rem;
+      font-weight: 600;
+      font-size: 0.875rem;
+      color: $text-color;
+      font-weight: 600;
+      white-space: nowrap;
+      p {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+    }
+  }
+
+  tbody tr {
+    // border-top: 1px solid #eee;
+    transition: background 0.3s;
+    width: 100%;
+
+    &:hover {
+      background-color: #fafafa;
+    }
+  }
+
+  .table-cell {
+    padding: 1rem;
+    font-size: 0.875rem;
+    color: #333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    // width: 100%;
+  }
+
+  @media screen and (min-width: 1024px) {
+    display: block;
+    // border: 1px solid black;
+  }
+}
+
+.pagination {
+  display: flex;
+  justify-content: end;
+  gap: 0.5rem;
+  // margin-top: 1rem;
+  // border: 1px solid #333;
+
+  .pagination-button {
+    // border: 1px solid red;
+    border-radius: 4px;
+    background-color: #e5e8ee;
+  }
+
+  button {
+    padding: 0.5rem 0.75rem;
+    // border: 1px solid #ccc;
+    border: none;
+    background: white;
+    cursor: pointer;
+    color: #9da3b3;
+
+    &.active {
+      // background-color: #5f00d6;
+      color: #545f7d;
+      // color: white;
+    }
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}
+
+.mobile-pagination {
+  padding: 1.5rem;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  gap: 1em;
+
+  .paginationButtons {
+    display: flex;
+  }
+  @media screen and (min-width: 1024) {
+    display: none;
+  }
+}
+
+.desktop-pagination {
+  justify-content: space-between;
+  @media screen and (max-width: 1023px) {
+    display: none;
   }
 }

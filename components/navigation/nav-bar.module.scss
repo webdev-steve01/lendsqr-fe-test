@@ -1,13 +1,51 @@
 .navbar {
   display: flex;
   gap: 1em;
-  padding: 1.5em 1em;
+  padding: 1em 1rem;
   align-items: center;
 
   position: sticky;
   top: 0;
   z-index: 1000; // ensure it stays above other elements
   background-color: #fff; // or match your actual background color
+  box-shadow: 3px 0px 20px 0px #0000000a;
+  font-family: "Work Sans", sans-serif;
+
+  @media screen and (min-width: 768px) {
+    justify-content: space-between;
+  }
+
+  .searchBarContainer {
+    width: 100%;
+    display: flex;
+    gap: 6em;
+  }
+
+  .hamburger {
+    @media screen and (min-width: 1200px) {
+      display: none;
+    }
+  }
+  .navbarRight {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    p {
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .tablet {
+      @media screen and (max-width: 767px) {
+        display: none;
+      }
+    }
+  }
+  .desktop {
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
 
   .profile {
     border-radius: 999px;

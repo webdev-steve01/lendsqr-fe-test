@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 // import { Geist, Geist_Mono } from "next/font/google";
 import "./styles/global.scss";
+import Head from "next/head";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -14,6 +15,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <Head>
+        <link
+          href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;500;600;700&display=swap"
+          rel="stylesheet"
+        />
+      </Head>
       <body>{children}</body>
     </html>
   );

@@ -9,10 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@hookform/resolvers": "^5.2.0",
+    "@tanstack/react-table": "^8.21.3",
+    "framer-motion": "^12.23.10",
     "next": "15.4.4",
     "react": "19.1.0",
     "react-dom": "19.1.0",
-    "sass": "^1.89.2"
+    "react-hook-form": "^7.61.1",
+    "sass": "^1.89.2",
+    "yup": "^1.6.1"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

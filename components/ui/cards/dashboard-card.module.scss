@@ -7,7 +7,7 @@
   background-color: #ffffff;
   padding: 1em;
   color: $text-color;
-  text-transform: uppercase;
+  // text-transform: uppercase;
   width: 100%; // ✅ Let it stretch fully inside the grid cell
   max-width: none; // ✅ Remove hard width cap
   height: 100%; // (Optional) Make all cards same height if needed

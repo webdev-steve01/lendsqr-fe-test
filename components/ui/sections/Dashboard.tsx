@@ -7,14 +7,18 @@ import usersWithLoans from "@/public/SVGs/assets/users-with-loans.svg";
 import usersWithSavings from "@/public/SVGs/assets/users-with-savings.svg";
 import { useFetch } from "@/hooks/useFetch";
 import UserCards from "../cards/UserCards";
+import UserTable from "../tables/UserTable";
 
 function Dashboard() {
-  const { data, loading, error } = useFetch<User[]>("/api/users");
+  const { data, loading, error } = useFetch<User[]>(
+    "http://localhost:3000/api/users"
+  );
   const [openModalId, setOpenModalId] = useState<string | null>(null);
 
   useEffect(() => {
     if (data) {
       localStorage.setItem("allUsers", JSON.stringify(data));
+      console.log(data);
     }
   }, [data]);
 
@@ -25,10 +29,10 @@ function Dashboard() {
 
     const totalUsers = data.length;
     const activeCount = data.filter((u) => u.status === 1).length;
-    const loansCount = data.filter((u) => (u as any).loan_repayment > 0).length; // rename if your field is different
+    const loansCount = data.filter((u) => (u as any).loan_repayment > 0).length;
     const savingsCount = data.filter(
       (u) => (u as any).amount_they_have > 0
-    ).length; // rename if your field is different
+    ).length;
 
     return { totalUsers, activeCount, loansCount, savingsCount };
   }, [data]);
@@ -38,6 +42,7 @@ function Dashboard() {
   if (loading)
     return (
       <section>
+        <h1 className="page-title">Users</h1>
         <div className="dashboard-card-container">
           <DashboardCard text="USERS" number="Loading" image={users} />
           <DashboardCard
@@ -67,43 +72,30 @@ function Dashboard() {
 
   return (
     <section>
+      <h1 className="page-title">Users</h1>
       <div className="dashboard-card-container">
         <DashboardCard text="USERS" number={fmt(totalUsers)} image={users} />
         <DashboardCard
-          text="ACTIVE USERS"
+          text={loading ? "Loading..." : "ACTIVE USERS"}
           number={fmt(activeCount)}
           image={activeUsers}
         />
         <DashboardCard
-          text="Users with Loans"
+          text={loading ? "Loading..." : "USERS WITH LOANS"}
           number={fmt(loansCount)}
           image={usersWithLoans}
         />
         <DashboardCard
-          text="Users with Savings"
+          text={loading ? "Loading..." : "USERS WITH SAVINGS"}
           number={fmt(savingsCount)}
           image={usersWithSavings}
         />
       </div>
 
       <div className="user-cards">
-        {render.map((user) => (
-          <div key={user.user_id}>
-            <UserCards
-              date_joined={user.date_joined}
-              fullname={user.fullname}
-              email={user.email.toLocaleLowerCase()}
-              organization={user.organization}
-              phone={user.phone}
-              status={user.status}
-              modalIsOpen={openModalId === user.user_id}
-              setModalIsOpen={(isOpen: boolean) =>
-                setOpenModalId(isOpen ? user.user_id : null)
-              }
-            />
-          </div>
-        ))}
+        <UserCards users={data} />
       </div>
+      <UserTable data={data} />
     </section>
   );
 }
