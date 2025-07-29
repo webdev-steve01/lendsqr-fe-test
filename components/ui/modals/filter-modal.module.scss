@@ -8,14 +8,62 @@
   display: flex;
   flex-direction: column;
   gap: 1em;
+  color: $text-color;
 
   .filterCriteria {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
     .criteriaHeader {
       font-weight: 500;
       font-size: 14px;
     }
+    .filterInput {
+      padding: 0.8em;
+      border-radius: 8px;
+      outline: none;
+      border: 1px solid #e1e4ed;
+      color: $text-color;
+
+      &:focus-within {
+        outline: none;
+      }
+    }
+  }
+  .filterButtons {
     display: flex;
-    flex-direction: column;
-    gap: 0.5em;
+    // justify-content: flex-end;
+    gap: 1em;
+
+    .resetButton,
+    .filterButton {
+      width: 100%;
+      border-radius: 8px;
+      padding: 0.8em;
+      border: none;
+      font-weight: 600;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    .resetButton {
+      background-color: white;
+      border: 1px solid #545f7d;
+      color: #545f7d;
+    }
+    .filterButton {
+      border: 1px solid #39cdcc;
+      background-color: #39cdcc;
+      color: white;
+    }
+  }
+
+  .datePlaceholder:placeholder-shown::before {
+    color: #aaa;
+    content: attr(placeholder);
+  }
+
+  .default {
+    color: $text-color;
   }
 }

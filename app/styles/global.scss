@@ -47,3 +47,10 @@ body {
 
 // media queries
 @import "./media-queries";
+
+input[type="date"]::-webkit-datetime-edit {
+  color: $text-color;
+}
+input[type="date"]:focus::-webkit-datetime-edit {
+  color: black;
+}

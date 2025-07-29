@@ -23,6 +23,9 @@
   }
 
   .hamburger {
+    @media screen and (min-width: 767px) {
+      margin-right: 1em;
+    }
     @media screen and (min-width: $desktop-width) {
       display: none;
     }
@@ -30,7 +33,19 @@
   .navbarRight {
     display: flex;
     align-items: center;
-    gap: 1em;
+    gap: 1.5rem;
+    color: $main-blue;
+
+    .profileContainer {
+      display: flex;
+      gap: 0.5em;
+    }
+
+    .docs {
+      margin-right: 1em;
+      text-decoration: underline;
+      font-weight: 400;
+    }
     p {
       display: flex;
       align-items: center;

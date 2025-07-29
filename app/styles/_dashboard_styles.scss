@@ -99,7 +99,9 @@
   max-width: 100%;
   padding: 1.5rem 0;
   position: relative;
-
+  &::-webkit-scrollbar {
+    display: none;
+  }
   .users-table {
     width: 100%;
     border-collapse: collapse;
@@ -200,15 +202,26 @@
   }
   .filter-container {
     position: absolute;
-    top: 100px;
+    top: 90px;
     left: 1rem;
     width: 270px;
     background-color: white;
     border: 1px solid #545f7d24;
+    border-radius: 4px;
     box-shadow: 3px 5px 20px 0px #0000000a;
   }
 
+  .mobile-filter {
+    display: none;
+  }
   @media screen and (max-width: 1000px) {
+    .mobile-filter {
+      display: block;
+      position: absolute;
+      top: 50px;
+      left: 1.5rem;
+      z-index: 1000;
+    }
     .more-options-desktop {
       display: none;
     }

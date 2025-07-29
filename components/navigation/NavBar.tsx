@@ -33,8 +33,8 @@ function NavBar() {
         />
         <SearchBar />
       </div>
-      <div className={styles.navbarRight}>
-        <p className={styles.tablet}>Docs</p>
+      <div className={`${styles.navbarRight} `}>
+        <p className={`${styles.tablet} ${styles.docs}`}>Docs</p>
         <Image
           className={styles.desktop}
           src={bell}
@@ -42,17 +42,19 @@ function NavBar() {
           width={30}
           height={30}
         />
-        <Image
-          src={profile}
-          width={50}
-          height={50}
-          className={styles.profile}
-          alt="Profile"
-        />
-        <p className={styles.tablet}>
-          <span>Adedeji</span>
-          <Image src={caret} alt="Profile" width={10} height={10} />
-        </p>
+        <div className={styles.profileContainer}>
+          <Image
+            src={profile}
+            width={50}
+            height={50}
+            className={styles.profile}
+            alt="Profile"
+          />
+          <p className={styles.tablet}>
+            <span>Adedeji</span>
+            <Image src={caret} alt="Profile" width={10} height={10} />
+          </p>
+        </div>
       </div>
       <Sidebar show={setIsOpen} isShown={isOpen} />
       {/* <DesktopSideBar /> */}

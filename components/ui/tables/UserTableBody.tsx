@@ -121,7 +121,7 @@ function UserTableBody({ users }: Props) {
             {user.email}
           </td>
           <td role="cell" className="table-cell" data-cell="phone">
-            {user.phone}
+            0{user.phone}
           </td>
           <td role="cell" className="table-cell" data-cell="date-joined">
             {user.date_joined}

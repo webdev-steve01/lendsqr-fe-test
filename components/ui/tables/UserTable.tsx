@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useRef, useEffect } from "react";
 import UserTableBody from "./UserTableBody";
 import Image from "next/image";
 import filter from "@/public/SVGs/assets/filter-results-button.svg";
@@ -17,20 +17,32 @@ type Props = {
 function UserTable({ data }: Props) {
   const [page, setPage] = useState(0); // 0-based index
   const [rowsPerPage, setRowsPerPage] = useState(9);
+  const [phone, setPhone] = useState("");
+  const [organization, setOrganization] = useState("");
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [date, setDate] = useState("");
+  const [status, setStatus] = useState(0);
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const filterRef = useRef<HTMLDivElement | null>(null);
+
   const ROWS_PER_PAGE = rowsPerPage;
-  // ✅ Get unique organizations
+
+  // Get unique organizations
   const organizations = useMemo(() => {
     const orgSet = new Set<string>();
     data.forEach((user) => orgSet.add(user.organization));
-    return Array.from(orgSet);
+    return Array.from(orgSet).sort((a, b) => a.localeCompare(b));
   }, [data]);
-  // ✅ Get unique status values (assuming numbers like 0 | 1 | 2 | 3)
+
+  // Get unique status values
   const statuses = useMemo(() => {
     const statusSet = new Set<number>();
     data.forEach((user) => statusSet.add(user.status));
     return Array.from(statusSet).sort();
   }, [data]);
 
+  // This handles the pagination
   const totalPages = Math.ceil(data.length / ROWS_PER_PAGE);
   const paginatedUsers = data.slice(
     page * ROWS_PER_PAGE,
@@ -71,11 +83,39 @@ function UserTable({ data }: Props) {
     return pages;
   };
 
+  // this handles the feature where clicking the body removes the modal
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        filterRef.current &&
+        !filterRef.current.contains(event.target as Node)
+      ) {
+        setIsFilterOpen(false);
+      }
+    };
+
+    if (isFilterOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isFilterOpen]);
+
   return (
     <>
       <div className="table-container">
+        <Image
+          src={filter}
+          alt="Filter"
+          width={20}
+          height={20}
+          className="mobile-filter"
+          onClick={() => setIsFilterOpen(!isFilterOpen)}
+        />
         <table className="users-table">
-          <thead>
+          <thead onClick={() => setIsFilterOpen(!isFilterOpen)}>
             <tr>
               {[
                 "Organization",
@@ -100,9 +140,26 @@ function UserTable({ data }: Props) {
           <UserTableBody users={paginatedUsers} />
         </table>
 
-        <div className="filter-container">
-          <FilterModal organizations={organizations} status={statuses} />
-        </div>
+        {isFilterOpen && (
+          <div className="filter-container" ref={filterRef}>
+            <FilterModal
+              organizations={organizations}
+              status={statuses}
+              emailValue={email}
+              phoneValue={phone}
+              usernameValue={username}
+              dateValue={date}
+              organizationValue={organization}
+              statusValue={status}
+              setOrganizationValue={setOrganization}
+              setUsernameValue={setUsername}
+              setEmailValue={setEmail}
+              setPhoneValue={setPhone}
+              setDateValue={setDate}
+              setStatusValue={setStatus}
+            />
+          </div>
+        )}
       </div>
 
       {/* Pagination Controls */}
