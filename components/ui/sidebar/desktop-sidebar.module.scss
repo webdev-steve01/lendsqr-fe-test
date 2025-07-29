@@ -69,6 +69,7 @@
         font-size: 16px;
         padding: 0.5rem 1.5rem;
         min-width: 150px;
+        cursor: pointer;
       }
     }
 
@@ -78,7 +79,7 @@
     }
   }
 
-  @media screen and (max-width: 1399px) {
+  @media screen and (max-width: calc($desktop-width - 1px)) {
     display: none;
   }
 }

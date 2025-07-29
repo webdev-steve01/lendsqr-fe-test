@@ -3,12 +3,17 @@
 .dash-body {
   @media screen and (min-width: $desktop-width) {
     display: grid;
-    grid-template-columns: 283px calc(100vw - 238px);
+    grid-template-columns: 283px 1fr;
     // border: 1px solid red;
   }
 }
+* {
+  box-sizing: border-box;
+}
+
 .dashboard-main-container {
   background-color: #fbfbfb;
+  padding: 1em;
   .page-title {
     font-size: 24px;
     font-weight: 600;
@@ -24,9 +29,6 @@
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 1rem;
-  padding: 0 1.5rem;
-  // border: 1px solid red;
-  // width: 100%;
 
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(4, 1fr);
@@ -39,7 +41,7 @@
   gap: 2em;
   padding: 1em;
   color: $text-color;
-  width: 100%;
+  // width: 100%;
   height: 100%;
 
   @media screen and (min-width: 1024px) {
@@ -53,64 +55,10 @@
   }
 }
 
-.table-container {
-  width: 100%;
-  overflow-x: auto;
-  padding: 1.5rem 0;
-
-  .users-table {
-    width: 100%;
-    border-collapse: collapse;
-    table-layout: fixed; // 👈 Prevents column overflow
-    background-color: white;
-  }
-
-  thead th {
-    text-align: left;
-    padding: 1rem 0;
-    font-size: 0.875rem;
-    color: $text-color;
-    font-weight: 600;
-    white-space: nowrap;
-
-    p {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-  }
-
-  tbody tr {
-    transition: background 0.3s;
-  }
-
-  .table-cell {
-    padding: 1rem 0;
-    font-size: 0.875rem;
-    color: $text-color;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    padding: 1em 0em;
-    max-width: 200px; // 👈 Controls truncation width
-    // border: 1px solid #ddd; // optional border
-  }
-  .more-options {
-    overflow: visible;
-  }
-
-  @media screen and (min-width: 1024px) {
-    display: block;
-    // border: 1px solid black;
-  }
-}
-
+// styles for the pagination
 .pagination {
   display: flex;
-  justify-content: end;
-  gap: 0.5rem;
-  // margin-top: 1rem;
-  // border: 1px solid #333;
+  justify-content: space-between;
 
   .pagination-button {
     // border: 1px solid red;
@@ -137,42 +85,193 @@
       cursor: not-allowed;
     }
   }
+  @media screen and (max-width: 600px) {
+    flex-direction: column;
+    gap: 1em;
+    padding-bottom: 1em;
+  }
 }
 
-.mobile-pagination {
-  padding: 1.5rem;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  gap: 1em;
+// style for the table
+.table-container {
+  width: 100%;
+  overflow-x: hidden;
+  max-width: 100%;
+  padding: 1.5rem 0;
+  position: relative;
 
-  .paginationButtons {
-    display: flex;
+  .users-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    background-color: white;
+    border: 1px solid #213f7d0f;
+    padding: 1em;
   }
-  @media screen and (min-width: 1024) {
+
+  thead th {
+    text-align: left;
+    padding: 1rem 0;
+    font-size: 0.875rem;
+    color: $text-color;
+    font-weight: 600;
+    white-space: nowrap;
+
+    p {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+  }
+
+  .table-cell {
+    color: $text-color;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 1rem;
+    white-space: nowrap;
+    line-clamp: 1;
+  }
+  .more-options {
+    overflow: visible;
+  }
+  .more-options-mobile {
     display: none;
   }
-}
-
-.desktop-pagination {
-  justify-content: space-between;
-  padding: 0 1.5rem;
-  display: flex;
-  @media screen and (max-width: 1023px) {
-    display: none;
+  th {
+    cursor: pointer;
   }
-}
+  .users-table th:nth-child(1),
+  .users-table td:nth-child(1) {
+    width: 15%; // Organization
+  }
 
-table {
-  position: relative;
-  overflow: visible;
-}
+  .users-table th:nth-child(2),
+  .users-table td:nth-child(2) {
+    width: 15%; // Username
+  }
 
-tbody {
-  overflow: visible;
-}
+  .users-table th:nth-child(3),
+  .users-table td:nth-child(3) {
+    width: 20%; // Email
+  }
 
-td {
-  position: relative;
-  overflow: visible;
+  .users-table th:nth-child(4),
+  .users-table td:nth-child(4) {
+    width: 15%; // Phone
+  }
+
+  .users-table th:nth-child(5),
+  .users-table td:nth-child(5) {
+    width: 20%; // Date Joined
+  }
+
+  .users-table th:nth-child(6),
+  .users-table td:nth-child(6) {
+    width: 12%; // Status
+  }
+
+  .users-table th:nth-child(7),
+  .users-table td:nth-child(7) {
+    width: 3%; // More options
+  }
+  .status-badge {
+    text-transform: capitalize;
+    // border: 1px solid black;
+    padding: 0.5em;
+    border-radius: 9999px;
+  }
+  .pending {
+    color: $pending-text;
+    background-color: $pending-background;
+  }
+  .active {
+    color: $active-text;
+    background-color: $active-background;
+  }
+  .inactive {
+    color: $inactive-text;
+    background-color: $inactive-background;
+  }
+  .blacklisted {
+    color: $blacklisted-text;
+    background-color: $blacklisted-background;
+  }
+  .filter-container {
+    position: absolute;
+    top: 100px;
+    left: 1rem;
+    width: 270px;
+    background-color: white;
+    border: 1px solid #545f7d24;
+    box-shadow: 3px 5px 20px 0px #0000000a;
+  }
+
+  @media screen and (max-width: 1000px) {
+    .more-options-desktop {
+      display: none;
+    }
+    .more-options-mobile {
+      display: flex;
+    }
+
+    .user-table {
+      display: grid;
+      gap: 2em;
+    }
+    .user-table,
+    .table-container,
+    tbody {
+      background-color: #fbfbfb;
+      border: none;
+    }
+    .users-table td:nth-child(1),
+    .users-table td:nth-child(2),
+    .users-table td:nth-child(3),
+    .users-table td:nth-child(4),
+    .users-table td:nth-child(5),
+    .users-table td:nth-child(6),
+    .users-table td:nth-child(7) {
+      width: 100%;
+    }
+    th,
+    thead {
+      display: none;
+    }
+    td {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      white-space: wrap;
+      // border: 1px solid red;
+
+      &::before {
+        content: attr(data-cell);
+      }
+    }
+    tr {
+      display: block;
+      border: 1px solid #213f7d0f;
+      margin-bottom: 2em;
+      background-color: white;
+    }
+  }
+
+  // miscellaneous table styles
+
+  table {
+    position: relative;
+    table-layout: fixed;
+    overflow: visible;
+  }
+
+  tbody {
+    overflow: visible;
+  }
+
+  td {
+    position: relative;
+    overflow: visible;
+  }
 }

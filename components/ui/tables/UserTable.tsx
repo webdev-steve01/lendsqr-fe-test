@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import UserTableBody from "./UserTableBody";
 import Image from "next/image";
 import filter from "@/public/SVGs/assets/filter-results-button.svg";
@@ -8,6 +8,7 @@ import prevDisabled from "@/public/SVGs/assets/previous-disabled.svg";
 import next from "@/public/SVGs/assets/next-active.svg";
 import nextDisabled from "@/public/SVGs/assets/next-disabled.svg";
 import PaginationDropdown from "../dropdowns/PaginationDropdown";
+import FilterModal from "../modals/FilterModal";
 
 type Props = {
   data: User[];
@@ -17,6 +18,18 @@ function UserTable({ data }: Props) {
   const [page, setPage] = useState(0); // 0-based index
   const [rowsPerPage, setRowsPerPage] = useState(9);
   const ROWS_PER_PAGE = rowsPerPage;
+  // ✅ Get unique organizations
+  const organizations = useMemo(() => {
+    const orgSet = new Set<string>();
+    data.forEach((user) => orgSet.add(user.organization));
+    return Array.from(orgSet);
+  }, [data]);
+  // ✅ Get unique status values (assuming numbers like 0 | 1 | 2 | 3)
+  const statuses = useMemo(() => {
+    const statusSet = new Set<number>();
+    data.forEach((user) => statusSet.add(user.status));
+    return Array.from(statusSet).sort();
+  }, [data]);
 
   const totalPages = Math.ceil(data.length / ROWS_PER_PAGE);
   const paginatedUsers = data.slice(
@@ -86,10 +99,14 @@ function UserTable({ data }: Props) {
           </thead>
           <UserTableBody users={paginatedUsers} />
         </table>
+
+        <div className="filter-container">
+          <FilterModal organizations={organizations} status={statuses} />
+        </div>
       </div>
 
       {/* Pagination Controls */}
-      <div className="pagination desktop-pagination">
+      <div className="pagination">
         <PaginationDropdown
           rowsPerPage={rowsPerPage}
           totalCount={data.length}

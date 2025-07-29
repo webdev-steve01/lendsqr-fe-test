@@ -41,20 +41,116 @@ function UserTableBody({ users }: Props) {
   }, []);
 
   return (
-    <tbody>
+    <tbody role="rowGroup">
       {users.map((user) => (
-        <tr key={user.user_id}>
-          <td className="table-cell">{user.organization}</td>
-          <td className="table-cell">{user.fullname}</td>
-          <td className="table-cell">{user.email}</td>
-          <td className="table-cell">{user.phone}</td>
-          <td className="table-cell">{user.date_joined}</td>
-          <td className="table-cell">
-            <span className={`status-badge ${user.status}`}>{user.status}</span>
+        <tr role="row" key={user.user_id}>
+          <td
+            className="table-cell more-options more-options-mobile"
+            style={{ position: "relative" }}
+            role="cell"
+          >
+            <div
+              className={styles.menuWrapper}
+              style={{ position: "relative" }}
+            >
+              <span
+                style={{ cursor: "pointer" }}
+                onClick={() =>
+                  setOpenMenuId(
+                    openMenuId === user.user_id ? null : user.user_id
+                  )
+                }
+              >
+                ⋮
+              </span>
+
+              <AnimatePresence>
+                {openMenuId === user.user_id && (
+                  <motion.div
+                    // className={style.userCardModal}
+                    // ref={modalRef}
+                    initial={{ opacity: 0, scale: 0.9, y: -10 }}
+                    animate={{ opacity: 1, scale: 1, y: 0 }}
+                    exit={{ opacity: 0, scale: 0.9, y: -10 }}
+                    transition={{ duration: 0.2, ease: "easeOut" }}
+                    className={styles.menu}
+                    ref={menuRef}
+                    style={{
+                      position: "absolute",
+                      zIndex: 10,
+                      background: "white",
+                      boxShadow: "0 2px 8px rgba(0,0,0,0.1)",
+                      padding: "8px",
+                      borderRadius: "6px",
+                    }}
+                  >
+                    <div
+                      className={styles.menuItem}
+                      onClick={() =>
+                        router.push(`.${pathname}/users/${user.user_id}`)
+                      }
+                    >
+                      <Image src={view} alt="view" width={20} height={20} />{" "}
+                      <span>View Details</span>
+                    </div>
+                    <div className={styles.menuItem}>
+                      <Image
+                        src={blacklist}
+                        alt="view"
+                        width={20}
+                        height={20}
+                      />{" "}
+                      <span>Blacklist User</span>
+                    </div>
+                    <div className={styles.menuItem}>
+                      <Image src={activate} alt="view" width={20} height={20} />{" "}
+                      <span>Activate User</span>
+                    </div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </div>
+          </td>
+          <td role="cell" className="table-cell" data-cell="organization">
+            {user.organization}
+          </td>
+          <td role="cell" className="table-cell" data-cell="username">
+            {user.fullname}
+          </td>
+          <td role="cell" className="table-cell" data-cell="email">
+            {user.email}
+          </td>
+          <td role="cell" className="table-cell" data-cell="phone">
+            {user.phone}
+          </td>
+          <td role="cell" className="table-cell" data-cell="date-joined">
+            {user.date_joined}
+          </td>
+          <td role="cell" className="table-cell" data-cell="status">
+            <span
+              className={`status-badge ${
+                user.status === 0
+                  ? "pending"
+                  : user.status === 1
+                  ? "active"
+                  : user.status === 2
+                  ? "blacklisted"
+                  : "inactive"
+              }`}
+            >
+              {user.status === 0
+                ? "Pending"
+                : user.status === 1
+                ? "Active"
+                : user.status === 2
+                ? "Blacklisted"
+                : "inactive"}
+            </span>
           </td>
 
           <td
-            className="table-cell more-options"
+            role="cell"
+            className="table-cell more-options more-options-desktop"
             style={{ position: "relative" }}
           >
             <div

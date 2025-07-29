@@ -6,14 +6,12 @@ import activeUsers from "@/public/SVGs/assets/active-users.svg";
 import usersWithLoans from "@/public/SVGs/assets/users-with-loans.svg";
 import usersWithSavings from "@/public/SVGs/assets/users-with-savings.svg";
 import { useFetch } from "@/hooks/useFetch";
-import UserCards from "../cards/UserCards";
 import UserTable from "../tables/UserTable";
 
 function Dashboard() {
   const { data, loading, error } = useFetch<User[]>(
     "http://localhost:3000/api/users"
   );
-  const [openModalId, setOpenModalId] = useState<string | null>(null);
 
   useEffect(() => {
     if (data) {
@@ -44,20 +42,20 @@ function Dashboard() {
       <section>
         <h1 className="page-title">Users</h1>
         <div className="dashboard-card-container">
-          <DashboardCard text="USERS" number="Loading" image={users} />
+          <DashboardCard text="USERS" number="Loading..." image={users} />
           <DashboardCard
             text="ACTIVE USERS"
-            number="Loading"
+            number="Loading..."
             image={activeUsers}
           />
           <DashboardCard
-            text="Users with Loans"
-            number="Loading"
+            text="USERS WITH LOANS"
+            number="Loading..."
             image={usersWithLoans}
           />
           <DashboardCard
-            text="Users with Savings"
-            number="Loading"
+            text="USERS WITH SAVINGS"
+            number="Loading..."
             image={usersWithSavings}
           />
         </div>
@@ -71,7 +69,7 @@ function Dashboard() {
   const render = data.slice(0, 10);
 
   return (
-    <>
+    <section className="dashboard-section">
       <h1 className="page-title">Users</h1>
       <div className="dashboard-card-container">
         <DashboardCard text="USERS" number={fmt(totalUsers)} image={users} />
@@ -92,11 +90,11 @@ function Dashboard() {
         />
       </div>
 
-      <div className="user-cards">
+      {/* <div className="user-cards">
         <UserCards users={data} />
-      </div>
+      </div> */}
       <UserTable data={data} />
-    </>
+    </section>
   );
 }
 

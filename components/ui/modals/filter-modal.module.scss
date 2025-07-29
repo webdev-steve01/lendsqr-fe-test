@@ -1,0 +1,21 @@
+@import "../../../app/styles/variables";
+
+.filterModal {
+  // border: 1px solid black;
+
+  width: 100%;
+  padding: 1.5em 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+
+  .filterCriteria {
+    .criteriaHeader {
+      font-weight: 500;
+      font-size: 14px;
+    }
+    display: flex;
+    flex-direction: column;
+    gap: 0.5em;
+  }
+}
