@@ -7,12 +7,18 @@ import Back from "@/public/SVGs/assets/back.svg";
 import profile from "@/public/SVGs/profile/user-details-profile-image.svg";
 import activeStar from "@/public/SVGs/assets/active-star.svg";
 import inactiveStar from "@/public/SVGs/assets/inactive-star.svg";
-import details from "@/public/SVGs/assets/general-details.svg";
-import documents from "@/public/SVGs/assets/documents-svgrepo-com.svg";
-import bankDetails from "@/public/SVGs/assets/bank-svgrepo-com.svg";
-import loans from "@/public/SVGs/assets/loan-nav.svg";
-import savings from "@/public/SVGs/assets/savings.svg";
-import appsAndSystems from "@/public/SVGs/assets/systems-inactive.svg";
+import detailsActive from "@/public/SVGs/assets/general-details.svg";
+import detailsInactive from "@/public/SVGs/assets/details-inactive.svg";
+import documentsInactive from "@/public/SVGs/assets/documents-inactive.svg";
+import documentsActive from "@/public/SVGs/assets/documents-active.svg";
+import banksInactive from "@/public/SVGs/assets/bank-inactive.svg";
+import banksActive from "@/public/SVGs/assets/bank-active.svg";
+import loansInactive from "@/public/SVGs/assets/loan-inactive.svg";
+import loansActive from "@/public/SVGs/assets/loan-active.svg";
+import savingsInactive from "@/public/SVGs/assets/savings-inactive.svg";
+import savingsActive from "@/public/SVGs/assets/savings-active.svg";
+import appsAndSystemsInactive from "@/public/SVGs/assets/system-inactive.svg";
+import appsAndSystemsActive from "@/public/SVGs/assets/system-active.svg";
 
 function UserProfile() {
   const [user, setUser] = useState<User>();
@@ -93,7 +99,9 @@ function UserProfile() {
             </div>
           </div>
           <div className="bank">
-            <p className="user-amount">₦{user?.amount_they_have}</p>
+            <p className="user-amount">
+              ₦{Number(user?.amount_they_have).toLocaleString()}
+            </p>
             <p className="user-bank">
               <span>{user?.bank_account}</span>/<span>{user?.bank_name}</span>
             </p>
@@ -107,9 +115,9 @@ function UserProfile() {
           >
             <Image
               className="nav-image"
-              src={details}
+              src={currentPage === "details" ? detailsActive : detailsInactive}
               alt="details"
-              width={30}
+              width={40}
             />
             <p className="nav-text">General Details</p>
           </div>
@@ -119,9 +127,13 @@ function UserProfile() {
           >
             <Image
               className="nav-image"
-              src={documents}
+              src={
+                currentPage === "documents"
+                  ? documentsActive
+                  : documentsInactive
+              }
               alt="documents"
-              width={30}
+              width={40}
             />
             <p className="nav-text">Documents</p>
           </div>
@@ -131,9 +143,9 @@ function UserProfile() {
           >
             <Image
               className="nav-image"
-              src={bankDetails}
+              src={currentPage === "bankDetails" ? banksActive : banksInactive}
               alt="bankDetails"
-              width={30}
+              width={40}
             />
             <p className="nav-text">Bank Details</p>
           </div>
@@ -141,7 +153,12 @@ function UserProfile() {
             onClick={() => setCurrentPage("loans")}
             className={currentPage === "loans" ? "active" : ""}
           >
-            <Image className="nav-image" src={loans} alt="loans" width={30} />
+            <Image
+              className="nav-image"
+              src={currentPage === "loans" ? loansActive : loansInactive}
+              alt="loans"
+              width={40}
+            />
             <p className="nav-text">Loans</p>
           </div>
           <div
@@ -150,9 +167,9 @@ function UserProfile() {
           >
             <Image
               className="nav-image"
-              src={savings}
+              src={currentPage === "savings" ? savingsActive : savingsInactive}
               alt="savings"
-              width={30}
+              width={40}
             />
             <p className="nav-text">Savings</p>
           </div>
@@ -162,9 +179,13 @@ function UserProfile() {
           >
             <Image
               className="nav-image"
-              src={appsAndSystems}
+              src={
+                currentPage === "appsAndSystems"
+                  ? appsAndSystemsActive
+                  : appsAndSystemsInactive
+              }
               alt="appsAndSystems"
-              width={30}
+              width={40}
             />
             <p>Apps & Systems</p>
           </div>
@@ -248,7 +269,9 @@ function UserProfile() {
             </div>
             <div className="info-container">
               <p className="info-type">loan repayment</p>
-              <p className="info-details">{user?.loan_repayment}</p>
+              <p className="info-details">
+                ₦{Number(user?.loan_repayment).toLocaleString()}
+              </p>
             </div>
           </div>
         </div>

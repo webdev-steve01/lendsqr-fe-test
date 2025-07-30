@@ -88,9 +88,7 @@ function Dashboard() {
         />
       </div>
 
-      {/* <div className="user-cards">
-        <UserCards users={data} />
-      </div> */}
+      {/* table */}
       <UserTable data={data} />
     </section>
   );

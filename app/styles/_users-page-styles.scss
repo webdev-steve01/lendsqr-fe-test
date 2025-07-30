@@ -74,7 +74,7 @@
     .user-details-and-finance {
       display: flex;
       flex-direction: column;
-      gap: 1em;
+      gap: 1.5rem;
 
       @media screen and (min-width: 550px) {
         flex-direction: row;
@@ -125,7 +125,7 @@
         padding: 0.5em;
 
         @media screen and (min-width: 500px) {
-          padding: 0 0.5em;
+          padding: 0 2em;
           border-left: 1px solid #dddfe5;
           border-right: 1px solid #dddfe5;
           min-height: 70px;
