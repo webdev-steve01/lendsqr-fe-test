@@ -9,7 +9,6 @@ import Image from "next/image";
 import profile from "@/public/SVGs/profile/profile-image.png";
 import styles from "./nav-bar.module.scss";
 import Sidebar from "../ui/sidebar/Sidebar";
-import DesktopSideBar from "../ui/sidebar/DesktopSideBar";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);

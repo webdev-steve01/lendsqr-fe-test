@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useEffect, useMemo } from "react";
 import DashboardCard from "../cards/DashboardCard";
 import users from "@/public/SVGs/assets/dashboard-users.svg";
 import activeUsers from "@/public/SVGs/assets/active-users.svg";
@@ -27,9 +27,9 @@ function Dashboard() {
 
     const totalUsers = data.length;
     const activeCount = data.filter((u) => u.status === 1).length;
-    const loansCount = data.filter((u) => (u as any).loan_repayment > 0).length;
+    const loansCount = data.filter((u) => Number(u.loan_repayment) > 0).length;
     const savingsCount = data.filter(
-      (u) => (u as any).amount_they_have > 0
+      (u) => Number(u.amount_they_have) > 0
     ).length;
 
     return { totalUsers, activeCount, loansCount, savingsCount };
@@ -65,8 +65,6 @@ function Dashboard() {
 
   if (error) return <p>Error: {error.message}</p>;
   if (!data) return <p>No data found</p>;
-
-  const render = data.slice(0, 10);
 
   return (
     <section className="dashboard-section">

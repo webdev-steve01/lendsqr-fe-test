@@ -1,6 +1,6 @@
 "use client";
 import LogInForm from "@/components/auth/LogInForm";
-import React, { useState } from "react";
+// import React from "react";
 import logo from "@/public/SVGs/logo/main_logo.svg";
 import authIllustration from "@/public/SVGs/signup_svgs/pablo-sign-in.svg";
 import Image from "next/image";

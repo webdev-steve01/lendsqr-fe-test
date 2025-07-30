@@ -70,7 +70,7 @@ function UserProfile() {
               <h2 className="user-id">{user?.user_id}</h2>
             </div>
             <div className="user-tier">
-              <p>User's Tier</p>
+              <p>User&apos;s Tier</p>
               {user?.user_tier === 0 ? (
                 <div className="star">
                   <Image src={activeStar} alt="star" width={15} />

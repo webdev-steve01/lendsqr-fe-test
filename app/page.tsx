@@ -1,4 +1,3 @@
-import Image from "next/image";
 import AuthenticateUser from "../components/ui/sections/AuthenticateUser";
 // import styles from "./page.module.css";
 

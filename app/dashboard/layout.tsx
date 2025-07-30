@@ -1,5 +1,4 @@
 import NavBar from "@/components/navigation/NavBar";
-import SearchBar from "@/components/ui/seacrhbar/SearchBar";
 import DesktopSideBar from "@/components/ui/sidebar/DesktopSideBar";
 import { Work_Sans } from "next/font/google";
 
