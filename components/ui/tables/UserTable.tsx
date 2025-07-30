@@ -160,12 +160,13 @@ function UserTable({ data }: Props) {
               dateValue={date}
               organizationValue={organization}
               statusValue={status}
-              setOrganizationValue={setOrganization}
-              setUsernameValue={setUsername}
-              setEmailValue={setEmail}
-              setPhoneValue={setPhone}
-              setDateValue={setDate}
-              setStatusValue={setStatus}
+              SetOrganizationValue={setOrganization}
+              SetUsernameValue={setUsername}
+              SetEmailValue={setEmail}
+              SetPhoneValue={setPhone}
+              SetDateValue={setDate}
+              SetStatusValue={setStatus}
+              OnSubmit={setIsFilterOpen}
             />
           </div>
         )}

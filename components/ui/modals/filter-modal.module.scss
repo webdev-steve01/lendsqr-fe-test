@@ -27,7 +27,7 @@
       color: $text-color;
 
       .date {
-        padding: none;
+        padding: 0;
         width: 100%;
         border: none;
         padding: 0.8em 0;
@@ -40,12 +40,27 @@
       &:focus-within {
         outline: none;
       }
+      .select {
+        appearance: none;
+        width: 100%;
+      }
     }
 
     .dateField {
       display: flex;
       align-items: center;
       padding: 0 0.8em;
+    }
+    .selectInput {
+      display: flex;
+      padding: 0;
+
+      .select {
+        border: none;
+        padding: 0.8em;
+        outline: none;
+        color: $text-color;
+      }
     }
   }
   .filterButtons {

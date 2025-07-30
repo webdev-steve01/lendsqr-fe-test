@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./filter-modal.module.scss";
 import Image from "next/image";
 import picker from "@/public/SVGs/assets/date-picker.svg";
+import caret from "@/public/SVGs/assets/caret-down-svgrepo-com.svg";
 type props = {
   organizations: string[];
   status: number[];
@@ -11,12 +12,13 @@ type props = {
   phoneValue: string;
   dateValue: string;
   statusValue: number | undefined;
-  setOrganizationValue: (val: string) => void;
-  setUsernameValue: (val: string) => void;
-  setEmailValue: (val: string) => void;
-  setPhoneValue: (val: string) => void;
-  setDateValue: (val: string) => void;
-  setStatusValue: (val: number) => void;
+  SetOrganizationValue: (val: string) => void;
+  SetUsernameValue: (val: string) => void;
+  SetEmailValue: (val: string) => void;
+  SetPhoneValue: (val: string) => void;
+  SetDateValue: (val: string) => void;
+  SetStatusValue: (val: number) => void;
+  OnSubmit: (bool: boolean) => void;
 };
 
 function FilterModal({ organizations, status, ...props }: props) {
@@ -24,27 +26,31 @@ function FilterModal({ organizations, status, ...props }: props) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
+        props.OnSubmit(false);
       }}
       className={styles.filterModal}
     >
       <div className={styles.filterCriteria}>
         <h2 className={styles.criteriaHeader}>Organization</h2>
-        <select
-          className={styles.filterInput}
-          title="organization"
-          value={props.organizationValue}
-          name="organization"
-          onChange={(e) => props.setOrganizationValue(e.target.value)}
-        >
-          <option className={styles.default} value="" disabled hidden>
-            Select
-          </option>
-          {organizations.map((org, idx) => (
-            <option key={idx} value={org}>
-              {org}
+        <div className={`${styles.filterInput} ${styles.selectInput}`}>
+          <select
+            title="organization"
+            className={styles.select}
+            value={props.organizationValue}
+            name="organization"
+            onChange={(e) => props.SetOrganizationValue(e.target.value)}
+          >
+            <option className={styles.default} value="" disabled hidden>
+              Select
             </option>
-          ))}
-        </select>
+            {organizations.map((org, idx) => (
+              <option key={idx} value={org}>
+                {org}
+              </option>
+            ))}
+          </select>
+          <Image src={caret} alt="caret" width={30} />
+        </div>
       </div>
 
       <div className={styles.filterCriteria}>
@@ -56,7 +62,7 @@ function FilterModal({ organizations, status, ...props }: props) {
           name=""
           id=""
           value={props.usernameValue}
-          onChange={(e) => props.setUsernameValue(e.target.value)}
+          onChange={(e) => props.SetUsernameValue(e.target.value)}
         />
       </div>
       <div className={styles.filterCriteria}>
@@ -68,7 +74,7 @@ function FilterModal({ organizations, status, ...props }: props) {
           name=""
           id=""
           value={props.emailValue}
-          onChange={(e) => props.setEmailValue(e.target.value)}
+          onChange={(e) => props.SetEmailValue(e.target.value)}
         />
       </div>
       <div className={styles.filterCriteria}>
@@ -81,10 +87,10 @@ function FilterModal({ organizations, status, ...props }: props) {
             name=""
             id="date"
             value={props.dateValue}
-            onChange={(e) => props.setDateValue(e.target.value)}
+            onChange={(e) => props.SetDateValue(e.target.value)}
           />
           <label htmlFor="date">
-            <Image src={picker} alt="date picker" width={20} height={20} />
+            <Image src={picker} alt="date picker" width={20} />
           </label>
         </div>
       </div>
@@ -102,7 +108,7 @@ function FilterModal({ organizations, status, ...props }: props) {
 
             // Allow clearing the field
             if (value === "") {
-              props.setPhoneValue("");
+              props.SetPhoneValue("");
               return;
             }
 
@@ -115,36 +121,39 @@ function FilterModal({ organizations, status, ...props }: props) {
             const phoneRegex = /^\+234\d{0,10}$/;
 
             if (phoneRegex.test(value)) {
-              props.setPhoneValue(value);
+              props.SetPhoneValue(value);
             }
           }}
         />
       </div>
       <div className={styles.filterCriteria}>
         <h2 className={styles.criteriaHeader}>Status</h2>
-        <select
-          className={styles.filterInput}
-          name="status"
-          title="status"
-          id=""
-          value={props.statusValue}
-          onChange={(e) => props.setStatusValue(Number(e.target.value))}
-        >
-          <option className={styles.default} value="" disabled hidden>
-            Select
-          </option>
-          {status.map((s, idx) => (
-            <option key={idx} value={s}>
-              {s === 0
-                ? "Pending"
-                : s === 1
-                ? "Active"
-                : s === 2
-                ? "Blacklisted"
-                : "Inactive"}
+        <div className={`${styles.filterInput} ${styles.selectInput}`}>
+          <select
+            className={styles.select}
+            name="status"
+            title="status"
+            id=""
+            value={props.statusValue}
+            onChange={(e) => props.SetStatusValue(Number(e.target.value))}
+          >
+            <option className={styles.default} value="" disabled hidden>
+              Select
             </option>
-          ))}
-        </select>
+            {status.map((s, idx) => (
+              <option key={idx} value={s}>
+                {s === 0
+                  ? "Pending"
+                  : s === 1
+                  ? "Active"
+                  : s === 2
+                  ? "Blacklisted"
+                  : "Inactive"}
+              </option>
+            ))}
+          </select>
+          <Image src={caret} alt="caret" width={30} height={30} />
+        </div>
       </div>
       <div className={styles.filterButtons}>
         <button type="button" className={styles.resetButton}>

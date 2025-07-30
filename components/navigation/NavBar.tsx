@@ -1,6 +1,6 @@
 "use client";
-import React, { useState } from "react";
-import SearchBar from "../ui/seacrhbar/SearchBar";
+import React, { useState, useRef, useEffect } from "react";
+import SearchBar from "../ui/searchbar/SearchBar";
 import hamburgerMenu from "@/public/SVGs/assets/hamburger-menu-svgrepo-com.svg";
 import bell from "@/public/SVGs/assets/notification.svg";
 import caret from "@/public/SVGs/assets/profile-caret.svg";
@@ -14,6 +14,27 @@ function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
   const [isProfileDropdownVisible, setIsProfileDropdownVisible] =
     useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (
+        dropdownRef.current &&
+        !dropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsProfileDropdownVisible(false);
+      }
+    }
+
+    if (isProfileDropdownVisible) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [isProfileDropdownVisible]);
+
   return (
     <nav className={styles.navbar}>
       <Image
@@ -60,7 +81,7 @@ function NavBar() {
           </p>
 
           {isProfileDropdownVisible && (
-            <div className={styles.dropdown}>
+            <div ref={dropdownRef} className={styles.dropdown}>
               <p className={` ${styles.docs}`}>Docs</p>
               <p>Notifications</p>
               <p className={``}>
