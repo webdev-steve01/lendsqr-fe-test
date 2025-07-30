@@ -8,6 +8,8 @@ import styles from "./sidebar.module.scss";
 import organization from "@/public/SVGs/assets/briefcase.svg";
 import dashboard from "@/public/SVGs/assets/dashboard.svg";
 import caret from "@/public/SVGs/assets/caret.svg";
+import logout from "@/public/SVGs/assets/sign-out.svg";
+import { usePathname } from "next/navigation";
 
 type SidebarProps = {
   isShown: boolean;
@@ -83,6 +85,7 @@ const settingsList = settingsMenu.map((item) => (
 ));
 
 function Sidebar({ isShown, show }: SidebarProps) {
+  const pathname = usePathname();
   return (
     <AnimatePresence>
       {isShown && (
@@ -144,6 +147,15 @@ function Sidebar({ isShown, show }: SidebarProps) {
                 <h1 className={styles.sidebarClassHeader}>SETTINGS</h1>
                 {settingsList}
               </div>
+              {pathname.includes("/users") && (
+                <div className={styles.signoutFunctions}>
+                  <div className={styles.signout}>
+                    <Image src={logout} alt="Logout" width={20} height={20} />
+                    <p>Logout</p>
+                  </div>
+                  <p className={styles.version}>v1.2.0</p>
+                </div>
+              )}
             </div>
           </motion.div>
         </motion.div>

@@ -1,13 +1,13 @@
-// sidebar.tsx
+// desktop sidebar.tsx
+"use client";
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import logo from "@/public/SVGs/logo/main_logo.svg";
-import cancel from "@/public/SVGs/assets/close.svg";
 import Image from "next/image";
 import styles from "./desktop-sidebar.module.scss";
 import organization from "@/public/SVGs/assets/briefcase.svg";
 import dashboard from "@/public/SVGs/assets/dashboard.svg";
 import caret from "@/public/SVGs/assets/caret.svg";
+import logout from "@/public/SVGs/assets/sign-out.svg";
+import { usePathname } from "next/navigation";
 
 const customers = [
   { name: "Users", img: "users-icon.svg", active: true },
@@ -78,6 +78,8 @@ const settingsList = settingsMenu.map((item) => (
 ));
 
 function DesktopSideBar() {
+  const pathname = usePathname();
+  console.log(pathname);
   return (
     <div className={styles.sideBarContainer}>
       <div className={styles.sidebar}>
@@ -110,6 +112,15 @@ function DesktopSideBar() {
             <h1 className={styles.sidebarClassHeader}>SETTINGS</h1>
             {settingsList}
           </div>
+          {pathname.includes("/users") && (
+            <div className={styles.signoutFunctions}>
+              <div className={styles.signout}>
+                <Image src={logout} alt="Logout" width={20} height={20} />
+                <p>Logout</p>
+              </div>
+              <p className={styles.version}>v1.2.0</p>
+            </div>
+          )}
         </div>
       </div>
     </div>

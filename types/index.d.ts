@@ -18,6 +18,7 @@ declare global {
     bvn: number;
     number_of_children: number;
     loan_repayment: string;
+    level_of_education: "B.Sc" | "HND" | "PhD";
     socials: {
       twitter?: string;
       facebook?: string;

@@ -11,7 +11,7 @@ const schema = yup.object({
   email: yup.string().email("Invalid email").required("Email is required"),
   password: yup
     .string()
-    .min(6, "Minimum 6 characters")
+    .min(6, "password should be at least 6 characters")
     .required("Password is required"),
 });
 
@@ -19,6 +19,7 @@ function LogInForm() {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [emailErrorVisible, setEmailErrorVisible] = useState(false);
   const [passwordErrorVisible, setPasswordErrorVisible] = useState(false);
+  const [loading, setLoading] = useState<boolean>(false);
 
   const {
     register,
@@ -32,6 +33,7 @@ function LogInForm() {
 
   const onSubmit = (data: { email: string; password: string }) => {
     console.log("Submitted data:", data);
+    setLoading(true);
     router.push("/dashboard");
   };
 
@@ -90,7 +92,7 @@ function LogInForm() {
       <div className="auth-footer-text">
         <p>Forgot password?</p>
       </div>
-      <AuthButton text="Log in" />
+      <AuthButton text={loading ? "Logging in..." : "Log In"} />
     </form>
   );
 }

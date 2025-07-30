@@ -13,6 +13,8 @@ import DesktopSideBar from "../ui/sidebar/DesktopSideBar";
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isProfileDropdownVisible, setIsProfileDropdownVisible] =
+    useState(false);
   return (
     <nav className={styles.navbar}>
       <Image
@@ -45,15 +47,29 @@ function NavBar() {
         <div className={styles.profileContainer}>
           <Image
             src={profile}
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             className={styles.profile}
             alt="Profile"
+            onClick={() => {
+              setIsProfileDropdownVisible(!isProfileDropdownVisible);
+            }}
           />
           <p className={styles.tablet}>
             <span>Adedeji</span>
             <Image src={caret} alt="Profile" width={10} height={10} />
           </p>
+
+          {isProfileDropdownVisible && (
+            <div className={styles.dropdown}>
+              <p className={` ${styles.docs}`}>Docs</p>
+              <p>Notifications</p>
+              <p className={``}>
+                <span>Adedeji</span>
+                <Image src={caret} alt="Profile" width={10} height={10} />
+              </p>
+            </div>
+          )}
         </div>
       </div>
       <Sidebar show={setIsOpen} isShown={isOpen} />

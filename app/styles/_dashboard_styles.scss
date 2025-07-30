@@ -41,7 +41,6 @@
   gap: 2em;
   padding: 1em;
   color: $text-color;
-  // width: 100%;
   height: 100%;
 
   @media screen and (min-width: 1024px) {
@@ -141,7 +140,7 @@
   .more-options-mobile {
     display: none;
   }
-  th {
+  .filter-desktop {
     cursor: pointer;
   }
   .users-table th:nth-child(1),
@@ -220,7 +219,7 @@
       position: absolute;
       top: 50px;
       left: 1.5rem;
-      z-index: 1000;
+      z-index: 900;
     }
     .more-options-desktop {
       display: none;

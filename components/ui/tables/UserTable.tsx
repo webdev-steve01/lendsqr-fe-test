@@ -115,7 +115,7 @@ function UserTable({ data }: Props) {
           onClick={() => setIsFilterOpen(!isFilterOpen)}
         />
         <table className="users-table">
-          <thead onClick={() => setIsFilterOpen(!isFilterOpen)}>
+          <thead>
             <tr>
               {[
                 "Organization",
@@ -130,7 +130,14 @@ function UserTable({ data }: Props) {
                   <p>
                     <span>{title}</span>
                     {title && (
-                      <Image src={filter} alt="Filter" width={15} height={20} />
+                      <Image
+                        onClick={() => setIsFilterOpen(!isFilterOpen)}
+                        src={filter}
+                        alt="Filter"
+                        width={15}
+                        height={20}
+                        className="filter-desktop"
+                      />
                     )}
                   </p>
                 </th>
