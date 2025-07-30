@@ -20,6 +20,9 @@
   border-color: #213f7d0f;
   .cardText {
     font-size: 14px;
+    @media screen and (max-width: 415px) {
+      font-size: 12px;
+    }
   }
   .cardAmount {
     font-weight: 600;
