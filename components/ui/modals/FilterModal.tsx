@@ -1,6 +1,7 @@
 import React from "react";
 import styles from "./filter-modal.module.scss";
-
+import Image from "next/image";
+import picker from "@/public/SVGs/assets/date-picker.svg";
 type props = {
   organizations: string[];
   status: number[];
@@ -72,15 +73,20 @@ function FilterModal({ organizations, status, ...props }: props) {
       </div>
       <div className={styles.filterCriteria}>
         <h2 className={styles.criteriaHeader}>Date</h2>
-        <input
-          className={`${styles.filterInput} ${styles.datePlaceholder}`}
-          type="Date"
-          placeholder="Date"
-          name=""
-          id=""
-          value={props.dateValue}
-          onChange={(e) => props.setDateValue(e.target.value)}
-        />
+        <div className={`${styles.filterInput} ${styles.dateField}`}>
+          <input
+            className={` ${styles.date}`}
+            type="Text"
+            placeholder="Date"
+            name=""
+            id="date"
+            value={props.dateValue}
+            onChange={(e) => props.setDateValue(e.target.value)}
+          />
+          <label htmlFor="date">
+            <Image src={picker} alt="date picker" width={20} height={20} />
+          </label>
+        </div>
       </div>
       <div className={styles.filterCriteria}>
         <h2 className={styles.criteriaHeader}>Phone Number</h2>

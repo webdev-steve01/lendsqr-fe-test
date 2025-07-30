@@ -114,38 +114,40 @@ function UserTable({ data }: Props) {
           className="mobile-filter"
           onClick={() => setIsFilterOpen(!isFilterOpen)}
         />
-        <table className="users-table">
-          <thead>
-            <tr>
-              {[
-                "Organization",
-                "Username",
-                "Email",
-                "Phone",
-                "Date Joined",
-                "Status",
-                "",
-              ].map((title, idx) => (
-                <th key={idx}>
-                  <p>
-                    <span>{title}</span>
-                    {title && (
-                      <Image
-                        onClick={() => setIsFilterOpen(!isFilterOpen)}
-                        src={filter}
-                        alt="Filter"
-                        width={15}
-                        height={20}
-                        className="filter-desktop"
-                      />
-                    )}
-                  </p>
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <UserTableBody users={paginatedUsers} />
-        </table>
+        <div className="table">
+          <table className="users-table">
+            <thead>
+              <tr>
+                {[
+                  "Organization",
+                  "Username",
+                  "Email",
+                  "Phone",
+                  "Date Joined",
+                  "Status",
+                  "",
+                ].map((title, idx) => (
+                  <th key={idx}>
+                    <p>
+                      <span>{title}</span>
+                      {title && (
+                        <Image
+                          onClick={() => setIsFilterOpen(!isFilterOpen)}
+                          src={filter}
+                          alt="Filter"
+                          width={15}
+                          height={20}
+                          className="filter-desktop"
+                        />
+                      )}
+                    </p>
+                  </th>
+                ))}
+              </tr>
+            </thead>
+            <UserTableBody users={paginatedUsers} />
+          </table>
+        </div>
 
         {isFilterOpen && (
           <div className="filter-container" ref={filterRef}>

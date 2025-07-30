@@ -10,7 +10,7 @@ import UserTable from "../tables/UserTable";
 
 function Dashboard() {
   const { data, loading, error } = useFetch<User[]>(
-    "https://osesojeh-stephen-sylvesterpaul-lend.vercel.app/api/users"
+    "http://localhost:3000/api/users"
   );
 
   useEffect(() => {

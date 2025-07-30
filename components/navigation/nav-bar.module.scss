@@ -75,7 +75,7 @@
     }
   }
   .desktop {
-    @media screen and (max-width: $desktop-width) {
+    @media screen and (max-width: calc($desktop-width - 1px)) {
       display: none;
     }
   }
