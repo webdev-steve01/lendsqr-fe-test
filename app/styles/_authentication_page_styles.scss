@@ -1,16 +1,10 @@
 // This file contains styles for the authentication page of the application.
 .auth {
-  // display: flex;
-  // padding: 0 4em;
   height: 100vh;
   position: relative;
-
-  // border: 1px solid red;
   .auth-image-section {
-    // border: 1px solid red;
     display: none;
     gap: 5em;
-    // width: 90%;
 
     .auth-image-children {
       display: flex;
@@ -22,7 +16,6 @@
     }
   }
   .auth-container {
-    // border: 1px solid red;
     width: 100%;
     display: flex;
     flex-direction: column;
