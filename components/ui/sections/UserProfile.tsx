@@ -257,7 +257,11 @@ function UserProfile() {
             </div>
             <div className="info-container">
               <p className="info-type">duration of employment</p>
-              <p className="info-details">{user?.duration_of_employment}</p>
+              <p className="info-details">
+                {Number(user?.duration_of_employment) > 1
+                  ? `${user?.duration_of_employment} years`
+                  : `${user?.duration_of_employment} year`}
+              </p>
             </div>
             <div className="info-container">
               <p className="info-type">Office email</p>
