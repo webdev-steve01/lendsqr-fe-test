@@ -6,6 +6,9 @@ import Head from "next/head";
 export const metadata: Metadata = {
   title: "lendsqr-fe-test by osesojeh sylvester paul",
   description: "this is an assessment project for lendsqr ",
+  icons: {
+    icon: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
