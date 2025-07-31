@@ -138,4 +138,4 @@ This project is a frontend assessment for Lendsqr, built with **Next.js** and **
 
 ---
 
-This Project was hosted on vercel with the URL [https://osesojeh-sylvesterpaul-lendsqr-fe-test.vercel.app](https://osesojeh-sylvesterpaul-lendsqr-fe-test.vercel.app).
+This Project was hosted on vercel with the URL [https://osesojeh-stephen-sylvesterpaul-lendsqr-fe-test.vercel.app](https://osesojeh-stephen-sylvesterpaul-lendsqr-fe-test.vercel.app).
