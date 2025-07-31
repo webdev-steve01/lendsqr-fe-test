@@ -10,7 +10,7 @@ import UserTable from "../tables/UserTable";
 
 function Dashboard() {
   const { data, loading, error } = useFetch<User[]>(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/users`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`
   );
 
   useEffect(() => {
