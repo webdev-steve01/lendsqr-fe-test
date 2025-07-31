@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
+import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import Back from "@/public/SVGs/assets/back.svg";
 import profile from "@/public/SVGs/profile/user-details-profile-image.svg";
@@ -31,6 +31,7 @@ function UserProfile() {
     | "appsAndSystems"
   >("details");
   const params = useParams();
+  const router = useRouter();
 
   useEffect(() => {
     const storedUsers = localStorage.getItem("allUsers");
@@ -49,7 +50,11 @@ function UserProfile() {
 
   return (
     <section className="users-page">
-      <nav className="users-page-navigation" aria-label="Breadcrumb">
+      <nav
+        className="users-page-navigation"
+        onClick={() => router.back()}
+        aria-label="Breadcrumb"
+      >
         <Image src={Back} alt="back" height={10} />
         <span>Back To Users</span>
       </nav>

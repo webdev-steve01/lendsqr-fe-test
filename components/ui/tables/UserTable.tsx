@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useMemo, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import UserTableBody from "./UserTableBody";
 import Image from "next/image";
 import filter from "@/public/SVGs/assets/filter-results-button.svg";
@@ -12,6 +13,11 @@ import FilterModal from "../modals/FilterModal";
 
 type Props = {
   data: User[];
+};
+const modalVariants = {
+  hidden: { opacity: 0, y: -20 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -20 },
 };
 
 function UserTable({ data }: Props) {
@@ -149,27 +155,37 @@ function UserTable({ data }: Props) {
           </table>
         </div>
 
-        {isFilterOpen && (
-          <div className="filter-container" ref={filterRef}>
-            <FilterModal
-              organizations={organizations}
-              status={statuses}
-              emailValue={email}
-              phoneValue={phone}
-              usernameValue={username}
-              dateValue={date}
-              organizationValue={organization}
-              statusValue={status}
-              SetOrganizationValue={setOrganization}
-              SetUsernameValue={setUsername}
-              SetEmailValue={setEmail}
-              SetPhoneValue={setPhone}
-              SetDateValue={setDate}
-              SetStatusValue={setStatus}
-              OnSubmit={setIsFilterOpen}
-            />
-          </div>
-        )}
+        <AnimatePresence>
+          {isFilterOpen && (
+            <motion.div
+              className="filter-container"
+              ref={filterRef}
+              variants={modalVariants}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <FilterModal
+                organizations={organizations}
+                status={statuses}
+                emailValue={email}
+                phoneValue={phone}
+                usernameValue={username}
+                dateValue={date}
+                organizationValue={organization}
+                statusValue={status}
+                SetOrganizationValue={setOrganization}
+                SetUsernameValue={setUsername}
+                SetEmailValue={setEmail}
+                SetPhoneValue={setPhone}
+                SetDateValue={setDate}
+                SetStatusValue={setStatus}
+                OnSubmit={setIsFilterOpen}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
       </section>
 
       {/* Pagination Controls */}

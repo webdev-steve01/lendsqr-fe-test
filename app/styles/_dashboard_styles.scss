@@ -1,5 +1,6 @@
 @import "./variables";
 @import "./modal-styles";
+@import "./route-user";
 .dash-body {
   @media screen and (min-width: $desktop-width) {
     display: grid;
@@ -108,6 +109,10 @@
 
     @media screen and (min-width: $desktop-width) {
       padding: 0 2em;
+    }
+    @media screen and (max-width: 1000px) {
+      background-color: #fbfbfb;
+      border: none;
     }
   }
   .users-table {
@@ -265,10 +270,15 @@
       justify-content: space-between;
       width: 100%;
       white-space: wrap;
+
       // border: 1px solid red;
 
       &::before {
         content: attr(data-cell);
+        text-transform: uppercase;
+        font-size: 12px;
+        color: $text-color;
+        font-weight: 600;
       }
     }
     tr {
@@ -276,6 +286,7 @@
       // border: 1px solid #213f7d0f;
       margin-bottom: 2em;
       background-color: white;
+      padding: 0 1em;
     }
   }
 

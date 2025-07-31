@@ -94,11 +94,10 @@
           cursor: default;
         }
       }
-    }
-
-    .activeNav {
-      border-left: 3px solid $green;
-      background-color: #f3fcfc;
+      .activeNav {
+        border-left: 3px solid $green;
+        background-color: #f3fcfc;
+      }
     }
   }
 

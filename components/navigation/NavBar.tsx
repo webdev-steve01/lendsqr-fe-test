@@ -1,5 +1,6 @@
 "use client";
 import React, { useState, useRef, useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import SearchBar from "../ui/searchbar/SearchBar";
 import hamburgerMenu from "@/public/SVGs/assets/hamburger-menu-svgrepo-com.svg";
 import bell from "@/public/SVGs/assets/notification.svg";
@@ -9,6 +10,12 @@ import Image from "next/image";
 import profile from "@/public/SVGs/profile/profile-image.png";
 import styles from "./nav-bar.module.scss";
 import Sidebar from "../ui/sidebar/Sidebar";
+
+const dropdownVariants = {
+  hidden: { opacity: 0, y: -10 },
+  visible: { opacity: 1, y: 0 },
+  exit: { opacity: 0, y: -10 },
+};
 
 function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -80,16 +87,26 @@ function NavBar() {
             <Image src={caret} alt="Profile" width={10} height={10} />
           </p>
 
-          {isProfileDropdownVisible && (
-            <div ref={dropdownRef} className={styles.dropdown}>
-              <p className={` ${styles.docs}`}>Docs</p>
-              <p>Notifications</p>
-              <p className={``}>
-                <span>Adedeji</span>
-                <Image src={caret} alt="Profile" width={10} height={10} />
-              </p>
-            </div>
-          )}
+          <AnimatePresence>
+            {isProfileDropdownVisible && (
+              <motion.div
+                ref={dropdownRef}
+                className={styles.dropdown}
+                variants={dropdownVariants}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                transition={{ duration: 0.2, ease: "easeInOut" }}
+              >
+                <p className={styles.docs}>Docs</p>
+                <p>Notifications</p>
+                <p>
+                  <span>Adedeji</span>
+                  <Image src={caret} alt="Profile" width={10} height={10} />
+                </p>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
       <Sidebar show={setIsOpen} isShown={isOpen} />

@@ -1,3 +1,4 @@
+// Dashboard Page
 "use client";
 import React, { useEffect, useMemo } from "react";
 import DashboardCard from "../cards/DashboardCard";
@@ -10,7 +11,7 @@ import UserTable from "../tables/UserTable";
 
 function Dashboard() {
   const { data, loading, error } = useFetch<User[]>(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`
+    `http://localhost:3000/api/users`
   );
 
   useEffect(() => {
