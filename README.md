@@ -19,7 +19,7 @@ This project is a frontend assessment for Lendsqr, built with **Next.js** and **
 - **API Simulation:** Instead of importing JSON directly, I placed the data in a local file and exposed it via a Next.js API route (`https://osesojeh-sylvesterpaul-lendsqr-fe-test.vercel.app/api/users`). This adds network latency and mimics real API consumption, which is more realistic for testing loading states and error handling.
 - **Enums:** Certain fields (e.g., gender, status, employment status) are stored as enums for consistency and easier mapping in the UI. To also simulate an encrypted backend.
 
-  **Enum Mapping (fill in as needed):**
+  **Enum Mapping:**
 
   - `gender`: 0 = Male, 1 = Female
   - `status`: 0 = Pending, 1 = Active, 2 = Blacklisted, 3 = Inactive
@@ -90,34 +90,39 @@ This project is a frontend assessment for Lendsqr, built with **Next.js** and **
 
 ## Folder structure of this Project
 
+## 📁 Project Folder Structure
+
+````text
 ├── app/
-│ ├── dashboard/  
-│ ├── page.tsx
-│ └── layout.tsx
-├── components/
-│ ├── auth/
-│ ├── buttons/
-│ ├── inputs/
-│ ├── layout/
-│ └── navigation/ (nav bar)
-├── sections/ (main parts of the project)
-│ ├── dashboard/
-│ ├── userprofile/
-│ └── authenticateuser/ (login page)
+│   ├── dashboard/
+│   ├── page.tsx
+│   ├── layout.tsx
+│   ├── components/
+│   │   ├── auth/
+│   │   ├── buttons/
+│   │   ├── inputs/
+│   │   ├── layout/
+│   │   ├── navigation/         # Nav bar
+│   │   ├── sections/           # Main parts of the project
+│   │   ├── dashboard/
+│   │   └── userprofile/
+│   ├── authenticateuser/       # Login page
 ├── hooks/
 ├── lib/
 ├── public/
-│ │── SVGs/
-│ │── Fonts/
+│   ├── SVGs/
+│   ├── fonts/
 ├── styles/
-├── types/
-├── **tests**/
+├── types/                      # Types for the project
+├── tests/
 ├── jest.config.js
 ├── jest.setup.js
 ├── tsconfig.json
 ├── package.json
 ├── README.md
 └── next.config.js
+
+
 
 ---
 
@@ -126,7 +131,8 @@ This project is a frontend assessment for Lendsqr, built with **Next.js** and **
 1. **Install dependencies:**
    ```sh
    npm install
-   ```
+````
+
 2. Start the development server:
    ```sh
    npm run dev
