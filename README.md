@@ -42,7 +42,7 @@ This project is a frontend assessment for Lendsqr, built with **Next.js** and **
 ## Dashboard
 
 - **Responsive Table:**
-  - On desktop, users are displayed in a table with columns for **Organization, Username, Email, Phone Number, Date Joined, Status**.
+  - On desktop (1250px and above), users are displayed in a table with columns for **Organization, Username, Email, Phone Number, Date Joined, Status**.
   - On mobile, the table is transformed into a card format for better readability. The table header (`thead`) is hidden, and a filter button is provided for mobile users.
 - **Pagination:**
   - Implemented client-side pagination to efficiently handle large datasets.
