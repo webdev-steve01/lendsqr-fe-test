@@ -11,7 +11,7 @@ import UserTable from "../tables/UserTable";
 
 function Dashboard() {
   const { data, loading, error } = useFetch<User[]>(
-    `http://localhost:3000/api/users`
+    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`
   );
 
   useEffect(() => {
