@@ -3,6 +3,7 @@ import styles from "./filter-modal.module.scss";
 import Image from "next/image";
 import picker from "@/public/SVGs/assets/date-picker.svg";
 import caret from "@/public/SVGs/assets/caret-down-svgrepo-com.svg";
+
 type props = {
   organizations: string[];
   status: number[];
@@ -31,13 +32,16 @@ function FilterModal({ organizations, status, ...props }: props) {
       className={styles.filterModal}
     >
       <div className={styles.filterCriteria}>
-        <h2 className={styles.criteriaHeader}>Organization</h2>
+        <label htmlFor="organization" className={styles.criteriaHeader}>
+          Organization
+        </label>
         <div className={`${styles.filterInput} ${styles.selectInput}`}>
           <select
             title="organization"
             className={styles.select}
             value={props.organizationValue}
             name="organization"
+            id="organization"
             onChange={(e) => props.SetOrganizationValue(e.target.value)}
           >
             <option className={styles.default} value="" disabled hidden>
@@ -54,37 +58,45 @@ function FilterModal({ organizations, status, ...props }: props) {
       </div>
 
       <div className={styles.filterCriteria}>
-        <h2 className={styles.criteriaHeader}>Username</h2>
+        <label htmlFor="username" className={styles.criteriaHeader}>
+          Username
+        </label>
         <input
           className={styles.filterInput}
           type="text"
           placeholder="User"
-          name=""
-          id=""
+          name="username"
+          id="username"
           value={props.usernameValue}
           onChange={(e) => props.SetUsernameValue(e.target.value)}
         />
       </div>
+
       <div className={styles.filterCriteria}>
-        <h2 className={styles.criteriaHeader}>Email</h2>
+        <label htmlFor="email" className={styles.criteriaHeader}>
+          Email
+        </label>
         <input
           className={styles.filterInput}
-          type="Email"
+          type="email"
           placeholder="Email"
-          name=""
-          id=""
+          name="email"
+          id="email"
           value={props.emailValue}
           onChange={(e) => props.SetEmailValue(e.target.value)}
         />
       </div>
+
       <div className={styles.filterCriteria}>
-        <h2 className={styles.criteriaHeader}>Date</h2>
+        <label htmlFor="date" className={styles.criteriaHeader}>
+          Date
+        </label>
         <div className={`${styles.filterInput} ${styles.dateField}`}>
           <input
-            className={` ${styles.date}`}
-            type="Text"
+            className={styles.date}
+            type="text"
             placeholder="Date"
-            name=""
+            name="date"
             id="date"
             value={props.dateValue}
             onChange={(e) => props.SetDateValue(e.target.value)}
@@ -94,46 +106,48 @@ function FilterModal({ organizations, status, ...props }: props) {
           </label>
         </div>
       </div>
+
       <div className={styles.filterCriteria}>
-        <h2 className={styles.criteriaHeader}>Phone Number</h2>
+        <label htmlFor="phone" className={styles.criteriaHeader}>
+          Phone Number
+        </label>
         <input
           className={styles.filterInput}
-          type="text"
+          type="tel"
           placeholder="Phone"
-          name=""
-          id=""
+          name="phone"
+          id="phone"
           value={props.phoneValue}
           onChange={(e) => {
             let value = e.target.value;
 
-            // Allow clearing the field
             if (value === "") {
               props.SetPhoneValue("");
               return;
             }
 
-            // Ensure it starts with +234
             if (!value.startsWith("+234")) {
               value = "+234" + value.replace(/^0+/, "").replace(/^\+234/, "");
             }
 
-            // Match digits after +234, max 10
             const phoneRegex = /^\+234\d{0,10}$/;
-
             if (phoneRegex.test(value)) {
               props.SetPhoneValue(value);
             }
           }}
         />
       </div>
+
       <div className={styles.filterCriteria}>
-        <h2 className={styles.criteriaHeader}>Status</h2>
+        <label htmlFor="status" className={styles.criteriaHeader}>
+          Status
+        </label>
         <div className={`${styles.filterInput} ${styles.selectInput}`}>
           <select
             className={styles.select}
             name="status"
             title="status"
-            id=""
+            id="status"
             value={props.statusValue}
             onChange={(e) => props.SetStatusValue(Number(e.target.value))}
           >
@@ -155,6 +169,7 @@ function FilterModal({ organizations, status, ...props }: props) {
           <Image src={caret} alt="caret" width={30} height={30} />
         </div>
       </div>
+
       <div className={styles.filterButtons}>
         <button type="button" className={styles.resetButton}>
           Reset

@@ -81,9 +81,9 @@ function DesktopSideBar() {
   const pathname = usePathname();
   console.log(pathname);
   return (
-    <div className={styles.sideBarContainer}>
-      <div className={styles.sidebar}>
-        <div className={styles.sidebarContent}>
+    <aside className={styles.sideBarContainer}>
+      <nav className={styles.sidebar}>
+        <section className={styles.sidebarContent}>
           <div className={styles.mainNav}>
             <div className={`${styles.navItem} ${styles.active}`}>
               <Image
@@ -121,9 +121,9 @@ function DesktopSideBar() {
               <p className={styles.version}>v1.2.0</p>
             </div>
           )}
-        </div>
-      </div>
-    </div>
+        </section>
+      </nav>
+    </aside>
   );
 }
 

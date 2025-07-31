@@ -5,17 +5,18 @@ import styles from "./search-bar.module.scss";
 
 function SearchBar() {
   return (
-    <div className={styles.searchBar}>
+    <form className={styles.searchBar} role="search">
       <input
-        type="text"
+        type="search"
         className={styles.searchBarInputField}
         placeholder="Search for anything"
+        aria-label="Search"
       />
-      <button type="button" className={styles.searchBarButton}>
-        <Image src={search} alt="search" width={20} height={20} />
-        {/* this was added to bypass the error of no text within the button  */}
+      <button type="submit" className={styles.searchBarButton}>
+        <Image src={search} alt="Search icon" width={20} height={20} />
+        {""}
       </button>
-    </div>
+    </form>
   );
 }
 

@@ -89,14 +89,14 @@ function Sidebar({ isShown, show }: SidebarProps) {
   return (
     <AnimatePresence>
       {isShown && (
-        <motion.div
+        <motion.aside
           className={styles.sideBarContainer}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
         >
-          <motion.div
+          <motion.nav
             className={styles.sidebar}
             initial={{ x: "-100%" }}
             animate={{ x: "0%" }}
@@ -157,8 +157,8 @@ function Sidebar({ isShown, show }: SidebarProps) {
                 </div>
               )}
             </div>
-          </motion.div>
-        </motion.div>
+          </motion.nav>
+        </motion.aside>
       )}
     </AnimatePresence>
   );

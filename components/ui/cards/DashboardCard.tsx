@@ -10,7 +10,7 @@ type dashboardCardProps = {
 
 function DashboardCard({ text, number, image }: dashboardCardProps) {
   return (
-    <div className={style.cardContainer}>
+    <section className={style.cardContainer}>
       <Image
         src={image}
         className={`${style.cardImage}`}
@@ -19,8 +19,8 @@ function DashboardCard({ text, number, image }: dashboardCardProps) {
         height={40}
       />
       <p className={style.cardText}>{text}</p>
-      <p className={style.cardAmount}>{number}</p>
-    </div>
+      <strong className={style.cardAmount}>{number}</strong>
+    </section>
   );
 }
 

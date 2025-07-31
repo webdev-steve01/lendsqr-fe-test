@@ -10,7 +10,7 @@ import UserTable from "../tables/UserTable";
 
 function Dashboard() {
   const { data, loading, error } = useFetch<User[]>(
-    `${process.env.NEXT_PUBLIC_BASE_URL}/api/users`
+    `http://localhost:3000/api/users`
   );
 
   useEffect(() => {
@@ -39,8 +39,10 @@ function Dashboard() {
 
   if (loading)
     return (
-      <section>
-        <h1 className="page-title">Users</h1>
+      <section aria-busy="true">
+        <header>
+          <h1 className="page-title">Users</h1>
+        </header>
         <div className="dashboard-card-container">
           <DashboardCard text="USERS" number="Loading..." image={users} />
           <DashboardCard
@@ -59,36 +61,46 @@ function Dashboard() {
             image={usersWithSavings}
           />
         </div>
-        {/* <div className="user-cards" /> */}
       </section>
     );
 
-  if (error) return <p>Error: {error.message}</p>;
-  if (!data) return <p>No data found</p>;
+  if (error)
+    return (
+      <section>
+        <p>Error: {error.message}</p>
+      </section>
+    );
+  if (!data)
+    return (
+      <section>
+        <p>No data found</p>
+      </section>
+    );
 
   return (
     <section className="dashboard-section">
-      <h1 className="page-title">Users</h1>
+      <header>
+        <h1 className="page-title">Users</h1>
+      </header>
       <div className="dashboard-card-container">
         <DashboardCard text="USERS" number={fmt(totalUsers)} image={users} />
         <DashboardCard
-          text={loading ? "Loading..." : "ACTIVE USERS"}
+          text="ACTIVE USERS"
           number={fmt(activeCount)}
           image={activeUsers}
         />
         <DashboardCard
-          text={loading ? "Loading..." : "USERS WITH LOANS"}
+          text="USERS WITH LOANS"
           number={fmt(loansCount)}
           image={usersWithLoans}
         />
         <DashboardCard
-          text={loading ? "Loading..." : "USERS WITH SAVINGS"}
+          text="USERS WITH SAVINGS"
           number={fmt(savingsCount)}
           image={usersWithSavings}
         />
       </div>
 
-      {/* table */}
       <UserTable data={data} />
     </section>
   );

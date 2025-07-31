@@ -30,17 +30,14 @@ function UserProfile() {
     | "savings"
     | "appsAndSystems"
   >("details");
-  const params = useParams(); // { id: 'some-id' }
+  const params = useParams();
 
   useEffect(() => {
-    // Get all users from localStorage
     const storedUsers = localStorage.getItem("allUsers");
 
     if (storedUsers) {
       try {
         const parsedUsers: User[] = JSON.parse(storedUsers);
-
-        // Find user by ID from URL params
         const userId = params.id as string;
         const matchedUser = parsedUsers.find((u) => u.user_id === userId);
         setUser(matchedUser);
@@ -52,48 +49,48 @@ function UserProfile() {
 
   return (
     <section className="users-page">
-      <p className="users-page-navigation">
+      <nav className="users-page-navigation" aria-label="Breadcrumb">
         <Image src={Back} alt="back" height={10} />
         <span>Back To Users</span>
-      </p>
+      </nav>
 
-      <div className="user-details-and-actions">
+      <header className="user-details-and-actions">
         <p className="user-details">User Details</p>
         <div className="user-actions">
           <button className="action-button blacklist">BLACKLIST USER</button>
           <button className="action-button activate">ACTIVATE USER</button>
         </div>
-      </div>
+      </header>
 
-      <div className="user-profile-container">
+      <section className="user-profile-container">
         <div className="user-details-and-finance">
           <div className="user-identification">
             <div className="profile-image">
               <Image src={profile} alt="profile" width={30} height={30} />
             </div>
             <div className="user-name-and-id">
-              <h2 className="user-name">{user?.fullname}</h2>
-              <h2 className="user-id">{user?.user_id}</h2>
+              <h1 className="user-name">{user?.fullname}</h1>
+              <p className="user-id">{user?.user_id}</p>
             </div>
             <div className="user-tier">
               <p>User&apos;s Tier</p>
               {user?.user_tier === 0 ? (
                 <div className="star">
-                  <Image src={activeStar} alt="star" width={15} />
-                  <Image src={inactiveStar} alt="star" width={15} />
-                  <Image src={inactiveStar} alt="star" width={15} />
+                  <Image src={activeStar} alt="active star" width={15} />
+                  <Image src={inactiveStar} alt="inactive star" width={15} />
+                  <Image src={inactiveStar} alt="inactive star" width={15} />
                 </div>
               ) : user?.user_tier === 1 ? (
                 <div className="star">
-                  <Image src={activeStar} alt="star" width={15} />
-                  <Image src={activeStar} alt="star" width={15} />
-                  <Image src={inactiveStar} alt="star" width={15} />
+                  <Image src={activeStar} alt="active star" width={15} />
+                  <Image src={activeStar} alt="active star" width={15} />
+                  <Image src={inactiveStar} alt="inactive star" width={15} />
                 </div>
               ) : user?.user_tier === 2 ? (
                 <div className="star">
-                  <Image src={activeStar} alt="star" width={15} />
-                  <Image src={activeStar} alt="star" width={15} />
-                  <Image src={activeStar} alt="star" width={15} />
+                  <Image src={activeStar} alt="active star" width={15} />
+                  <Image src={activeStar} alt="active star" width={15} />
+                  <Image src={activeStar} alt="active star" width={15} />
                 </div>
               ) : null}
             </div>
@@ -108,7 +105,7 @@ function UserProfile() {
           </div>
         </div>
 
-        <div className="user-profile-nav">
+        <nav className="user-profile-nav" aria-label="User navigation tabs">
           <div
             onClick={() => setCurrentPage("details")}
             className={currentPage === "details" ? "active" : ""}
@@ -144,7 +141,7 @@ function UserProfile() {
             <Image
               className="nav-image"
               src={currentPage === "bankDetails" ? banksActive : banksInactive}
-              alt="bankDetails"
+              alt="bank details"
               width={40}
             />
             <p className="nav-text">Bank Details</p>
@@ -184,17 +181,17 @@ function UserProfile() {
                   ? appsAndSystemsActive
                   : appsAndSystemsInactive
               }
-              alt="appsAndSystems"
+              alt="apps and systems"
               width={40}
             />
             <p>Apps & Systems</p>
           </div>
-        </div>
-      </div>
+        </nav>
+      </section>
 
-      <div className="more-info-section">
-        <div className="info">
-          <h3 className="info-header">Personal Information</h3>
+      <section className="more-info-section">
+        <article className="info">
+          <h2 className="info-header">Personal Information</h2>
           <div className="main-info-container first-main-container">
             <div className="info-container">
               <p className="info-type">full name</p>
@@ -237,9 +234,10 @@ function UserProfile() {
               <p className="info-details">{user?.type_of_residence}</p>
             </div>
           </div>
-        </div>
-        <div className="info">
-          <h3 className="info-header">Education and Employment</h3>
+        </article>
+
+        <article className="info">
+          <h2 className="info-header">Education and Employment</h2>
           <div className="main-info-container">
             <div className="info-container">
               <p className="info-type">level of education</p>
@@ -278,10 +276,10 @@ function UserProfile() {
               </p>
             </div>
           </div>
-        </div>
-        <div className="info">
-          <h3 className="info-header">Socials</h3>
+        </article>
 
+        <article className="info">
+          <h2 className="info-header">Socials</h2>
           <div className="main-info-container">
             {user?.socials?.twitter && (
               <div className="info-container">
@@ -302,12 +300,12 @@ function UserProfile() {
               </div>
             )}
           </div>
-        </div>
-        {user?.guarantors && (
-          <div className="info">
-            <h3 className="info-header">Guarantor</h3>
+        </article>
 
-            <div className="">
+        {user?.guarantors && (
+          <article className="info">
+            <h2 className="info-header">Guarantor</h2>
+            <div>
               {user.guarantors.map((guarantor, index) => (
                 <div key={index} className="main-info-container">
                   <div className="info-container">
@@ -329,9 +327,9 @@ function UserProfile() {
                 </div>
               ))}
             </div>
-          </div>
+          </article>
         )}
-      </div>
+      </section>
     </section>
   );
 }

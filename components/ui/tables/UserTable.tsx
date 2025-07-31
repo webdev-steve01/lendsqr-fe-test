@@ -105,7 +105,7 @@ function UserTable({ data }: Props) {
 
   return (
     <>
-      <div className="table-container">
+      <section className="table-container">
         <Image
           src={filter}
           alt="Filter"
@@ -170,7 +170,7 @@ function UserTable({ data }: Props) {
             />
           </div>
         )}
-      </div>
+      </section>
 
       {/* Pagination Controls */}
       <div className="pagination">
