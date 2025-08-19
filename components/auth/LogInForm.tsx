@@ -27,12 +27,13 @@ function LogInForm() {
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
+    mode: "onSubmit",
+    reValidateMode: "onChange",
   });
 
   const router = useRouter();
 
-  const onSubmit = (data: { email: string; password: string }) => {
-    console.log("Submitted data:", data);
+  const onSubmit = () => {
     setLoading(true);
     router.push("/dashboard");
   };
@@ -42,8 +43,6 @@ function LogInForm() {
       setEmailErrorVisible(true);
       const timeout = setTimeout(() => setEmailErrorVisible(false), 4000);
       return () => clearTimeout(timeout);
-    } else {
-      setEmailErrorVisible(false); // 👈 Add this
     }
   }, [errors.email]);
 
@@ -52,8 +51,6 @@ function LogInForm() {
       setPasswordErrorVisible(true);
       const timeout = setTimeout(() => setPasswordErrorVisible(false), 4000);
       return () => clearTimeout(timeout);
-    } else {
-      setPasswordErrorVisible(false); // 👈 Add this
     }
   }, [errors.password]);
 
@@ -77,14 +74,12 @@ function LogInForm() {
         <InputField
           type="email"
           {...register("email")}
-          emailError={!!errors.email}
           showPassword={false}
           toggleShowPassword={() => {}}
         />
         <InputField
-          type="password" // ✅ Always just "password"
+          type="password"
           {...register("password")}
-          passwordError={!!errors.password}
           showPassword={showPassword}
           toggleShowPassword={() => setShowPassword(!showPassword)}
         />

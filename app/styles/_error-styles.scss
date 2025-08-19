@@ -3,7 +3,7 @@
   top: 20px;
   left: 50%;
   transform: translateX(-50%);
-  width: 300px;
+  // width: 0px;
   z-index: 1000;
   background-color: #ffe0e0;
   color: #b00020;
@@ -13,6 +13,8 @@
   justify-content: space-between;
   align-items: center;
   animation: slideDown 0.3s ease;
+  display: flex;
+  gap: 1em;
 
   button {
     background: transparent;
