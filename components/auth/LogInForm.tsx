@@ -82,7 +82,7 @@ function LogInForm() {
           toggleShowPassword={() => {}}
         />
         <InputField
-          type={showPassword ? "text" : "password"}
+          type="password" // ✅ Always just "password"
           {...register("password")}
           passwordError={!!errors.password}
           showPassword={showPassword}

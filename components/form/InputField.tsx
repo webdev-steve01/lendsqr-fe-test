@@ -22,37 +22,46 @@ const InputField = forwardRef<HTMLInputElement, PasswordInputFieldProps>(
     },
     ref
   ) => {
+    // 🔎 Decide the input type in a clear way
+    const getInputType = () => {
+      if (type === "password") {
+        return showPassword ? "text" : "password";
+      }
+      return type; // "email" or "text"
+    };
+
+    // 🔎 Decide placeholder text
+    const getPlaceholder = () => {
+      switch (type) {
+        case "password":
+          return "Password";
+        case "email":
+          return "Email";
+        default:
+          return "Full Name";
+      }
+    };
+
     return (
       <div className={style.inputField}>
         <input
-          type={
-            type === "password" && !showPassword
-              ? "password"
-              : type === "email"
-              ? "email"
-              : "text"
-          }
-          placeholder={
-            type === "password"
-              ? "Password"
-              : type === "email"
-              ? "Email"
-              : "Full Name"
-          }
+          type={getInputType()}
+          placeholder={getPlaceholder()}
           name={type}
           ref={ref}
-          className={`${style.input} ${
-            type === "email" && emailError ? style.error : ""
-          } ${type === "password" && passwordError ? style.error : ""}`}
+          className={`${style.input} 
+            ${type === "email" && emailError ? style.error : ""} 
+            ${type === "password" && passwordError ? style.error : ""}`}
           {...rest}
         />
+
         {type === "password" && (
           <button
-            className={`${style.togglePasswordButton}`}
+            className={style.togglePasswordButton}
             type="button"
             onClick={toggleShowPassword}
           >
-            <p>{showPassword ? "hide" : "show"}</p>
+            <p>{showPassword ? "Hide" : "Show"}</p>
           </button>
         )}
       </div>
