@@ -9,7 +9,7 @@ import logo from "@/public/SVGs/logo/main_logo.svg";
 import Image from "next/image";
 import profile from "@/public/SVGs/profile/profile-image.png";
 import styles from "./nav-bar.module.scss";
-import Sidebar from "../ui/sidebar/Sidebar";
+import Sidebar from "./sidebar/Sidebar";
 
 const dropdownVariants = {
   hidden: { opacity: 0, y: -10 },
@@ -23,6 +23,7 @@ function NavBar() {
     useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
+  // Close modal on outside click for mobile view
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (

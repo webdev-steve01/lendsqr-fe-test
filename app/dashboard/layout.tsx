@@ -1,5 +1,5 @@
 import NavBar from "@/components/navigation/NavBar";
-import DesktopSideBar from "@/components/ui/sidebar/DesktopSideBar";
+import DesktopSideBar from "@/components/navigation/sidebar/DesktopSideBar";
 import { Work_Sans } from "next/font/google";
 
 const workSans = Work_Sans({
