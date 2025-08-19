@@ -59,9 +59,12 @@ function UserProfile() {
   if (notFound) {
     return (
       <section className="users-page">
-        <nav className="users-page-navigation" onClick={() => router.back()}>
+        <nav
+          className="users-page-navigation"
+          onClick={() => router.push("/dashboard")}
+        >
           <Image src={Back} alt="back" height={10} />
-          <span>Back To Users</span>
+          <span>Back To Dashboard</span>
         </nav>
         <p className="error-message">User not found.</p>
       </section>
