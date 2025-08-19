@@ -22,6 +22,7 @@ import appsAndSystemsActive from "@/public/SVGs/assets/system-active.svg";
 
 function UserProfile() {
   const [user, setUser] = useState<User>();
+  const [notFound, setNotFound] = useState<boolean>(false);
   const [currentPage, setCurrentPage] = useState<
     | "details"
     | "documents"
@@ -35,18 +36,37 @@ function UserProfile() {
 
   useEffect(() => {
     const storedUsers = localStorage.getItem("allUsers");
+    if (!storedUsers) {
+      setNotFound(true);
+      return;
+    }
 
-    if (storedUsers) {
-      try {
-        const parsedUsers: User[] = JSON.parse(storedUsers);
-        const userId = params.id as string;
-        const matchedUser = parsedUsers.find((u) => u.user_id === userId);
+    try {
+      const parsedUsers: User[] = JSON.parse(storedUsers);
+      const userId = params.id as string;
+      const matchedUser = parsedUsers.find((u) => u.user_id === userId);
+      if (matchedUser) {
         setUser(matchedUser);
-      } catch (error) {
-        console.error("Failed to parse users from localStorage", error);
+        setNotFound(false);
+      } else {
+        setNotFound(true);
       }
+    } catch (error) {
+      console.error("Failed to parse users from localStorage", error);
     }
   }, [params.id]);
+
+  if (notFound) {
+    return (
+      <section className="users-page">
+        <nav className="users-page-navigation" onClick={() => router.back()}>
+          <Image src={Back} alt="back" height={10} />
+          <span>Back To Users</span>
+        </nav>
+        <p className="error-message">User not found.</p>
+      </section>
+    );
+  }
 
   return (
     <section className="users-page">
