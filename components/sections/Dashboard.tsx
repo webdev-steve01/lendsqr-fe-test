@@ -1,13 +1,13 @@
 // Dashboard Page
 "use client";
 import React, { useEffect, useMemo } from "react";
-import DashboardCard from "../cards/DashboardCard";
+import DashboardCard from "../ui/cards/DashboardCard";
 import users from "@/public/SVGs/assets/dashboard-users.svg";
 import activeUsers from "@/public/SVGs/assets/active-users.svg";
 import usersWithLoans from "@/public/SVGs/assets/users-with-loans.svg";
 import usersWithSavings from "@/public/SVGs/assets/users-with-savings.svg";
 import { useFetch } from "@/hooks/useFetch";
-import UserTable from "../tables/UserTable";
+import UserTable from "../ui/tables/UserTable";
 
 function Dashboard() {
   const { data, loading, error } = useFetch<User[]>(
